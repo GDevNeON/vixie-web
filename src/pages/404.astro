@@ -1,0 +1,29 @@
+---
+/**
+ * 404 — minimal (UI-SPEC §8.4, D17). Inside BaseLayout.
+ * Exact VI copy; home link live cyan-dark.
+ * No illustration, no tracking, no extra nav.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 ·" currentPath="/404" noindex>
+  <div class="shell miss">
+    <h1>404 ·</h1>
+    <p>Không tìm thấy trang. <a href="/">Về trang chủ.</a></p>
+  </div>
+</BaseLayout>
+<style>
+  .miss {
+    padding-block: var(--space-7);
+  }
+  .miss p {
+    margin-top: var(--space-4);
+    font-size: var(--text-md);
+    color: var(--color-ink-soft);
+    overflow-wrap: break-word;
+  }
+  .miss a {
+    color: var(--color-cyan-dark);
+    overflow-wrap: break-word;
+  }
+</style>

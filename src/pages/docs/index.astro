@@ -1,0 +1,24 @@
+---
+/**
+ * `/docs` — DocsLayout stub route (UI-SPEC §8.3, D07).
+ * SHELL now: font-pipeline note + 404-pattern sample box.
+ * Real hierarchy/text deferred to Phase 6.
+ */
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+<DocsLayout title="Docs stub · 404 · fonts — Vixie Web" currentPath="/docs">
+  <div class="sec"><h1 class="sec-title">Docs stub · 404 · fonts</h1><span>shell · Phase 6 owns real text</span></div>
+  <div class="grid">
+    <div class="box s8">
+      <span class="lab">font pipeline · self-host</span>
+      <code>@fontsource Sans + Mono · woff2 + @font-face · swap + size-adjust fallback · preload 2 file vi · OFL note · &lt;200KB</code>
+      <p class="small" style="margin-top:8px">Plex Sans 400–700 + Plex Mono 400–600 · latin + vietnamese · self-host, không CDN.</p>
+      <code>/fonts/ibm-plex-sans-vietnamese-600-normal.woff2 · /fonts/ibm-plex-sans-vietnamese-400-normal.woff2</code>
+    </div>
+    <div class="box s4">
+      <span class="lab">404 pattern · sample</span>
+      <p><b>404 ·</b></p>
+      <p class="small">Không tìm thấy trang. <a href="/" style="color:var(--color-cyan-dark)">Về trang chủ.</a></p>
+    </div>
+  </div>
+</DocsLayout>

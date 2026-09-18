@@ -1,0 +1,79 @@
+---
+/**
+ * DocsLayout — D07 FULL placeholder sidebar shell (Task 2-2).
+ * SHELL now; real hierarchy/text deferred to Phase 6, legal text to Phase 9.
+ * Sidebar rows are dead plain spans, NEVER links.
+ * Desktop: 250px sidebar + body. Mobile (≤920px): 1-col stack.
+ */
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  noindex?: boolean;
+  /** Active route for header aria-current. */
+  currentPath?: string;
+}
+
+const { currentPath = '/docs', ...seo } = Astro.props;
+---
+<BaseLayout currentPath={currentPath} {...seo}>
+  <div class="shell docs">
+    <aside class="docs-side">
+      <nav aria-label="Docs">
+        <p class="side-head">Thanh bên Docs · chỗ giữ</p>
+        <span class="lab">Phase 2+</span>
+        <span class="dim-line">— Cài đặt</span>
+        <span class="dim-line">— Bắt đầu</span>
+        <span class="dim-line">— Tùy chỉnh</span>
+        <span class="dim-line">— FAQ</span>
+      </nav>
+    </aside>
+    <div class="docs-body">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+<style>
+  .docs {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+  }
+  .docs-side {
+    min-width: 0;
+    align-self: start;
+    border: 1px solid var(--color-line-strong);
+    background: var(--color-paper);
+    padding: var(--space-4);
+  }
+  .side-head {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow-wrap: break-word;
+    margin-bottom: var(--space-3);
+  }
+  .docs-side .dim-line {
+    display: block;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    padding-block: var(--space-2);
+    overflow-wrap: break-word;
+  }
+  .docs-body {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 920px) {
+    .docs {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
