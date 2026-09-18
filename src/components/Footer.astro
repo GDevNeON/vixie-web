@@ -1,0 +1,44 @@
+---
+/**
+ * Footer — full 4-col shell (D04). Legal/social rows are dead placeholder
+ * plain spans, NEVER fake-live href. Live: /tokens link + contact email.
+ * Giant Comfortaa sign-off is decorative (aria-hidden).
+ */
+const year = new Date().getFullYear();
+---
+<div class="shell foot-wrap">
+  <div class="giant" aria-hidden="true">vixie<em>.</em></div>
+  <footer class="ft">
+    <div>
+      <span class="lab">Vixie · shell</span>
+      <p class="small">
+        Promo site điện ảnh. VI mặc định + EN Phase 2. Stack: Astro 5 · Tailwind 4 · Lenis + GSAP · Plex VI.
+        © <span>{year}</span> · <a class="mail" href="mailto:acc.tester.trial@gmail.com">acc.tester.trial@gmail.com</a> (LEGA-06).
+      </p>
+    </div>
+    <div>
+      <span class="lab">Site · Phase 2+</span>
+      <span class="dim-blk">Landing</span>
+      <span class="dim-blk">Docs</span>
+      <span class="dim-blk">Blog</span>
+      <span class="dim-blk">Download</span>
+    </div>
+    <div>
+      <span class="lab">Legal · Phase 2+</span>
+      <span class="dim-blk">Privacy</span>
+      <span class="dim-blk">Terms</span>
+      <span class="dim-blk">Content</span>
+      <span class="dim-blk">Changelog</span>
+    </div>
+    <div>
+      <span class="lab">Meta</span>
+      <a href="/tokens">/tokens</a>
+      <span class="lab">Support · Contact · Phase 2+</span>
+      <span class="dim-blk">Support</span>
+      <span class="dim-blk">Contact</span>
+    </div>
+  </footer>
+  <div class="base">
+    <span>tokens.css → global.css · @theme CSS-first · MDX build-only · Playwright 1 smoke</span>
+  </div>
+</div>

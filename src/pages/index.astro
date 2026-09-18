@@ -1,0 +1,28 @@
+---
+/**
+ * Homepage `/` — VI hello-world placeholder (UI-SPEC §8.1 + §11 exact copy).
+ * SHELL now; real landing content owned by Phases 3–4.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import LenisIsland from '../components/LenisIsland.tsx';
+---
+<PageLayout title="Vixie Web — Phase 1" currentPath="/">
+  <section class="hero" aria-labelledby="hero-h1">
+    <div>
+      <div class="kick">Phase 1 · FOUN-01..05 · VI first</div>
+      <h1 id="hero-h1">bạn đồng hành <em>sống</em> trên hình nền.</h1>
+      <p class="lead">Phase 1 giao khung sống: cuộn mượt, tokens chuẩn, shell đủ. Tải app mở Phase 2.</p>
+      <div class="row">
+        <button class="btn cy" type="button" disabled aria-describedby="phase2-note">Tải ngay</button>
+        <span class="chip" id="phase2-note">Phase 2</span>
+        <a class="btn gh" href="/tokens">Xem /tokens</a>
+      </div>
+    </div>
+    <LenisIsland client:load />
+  </section>
+
+  <section aria-labelledby="demo-h2">
+    <div class="sec"><h2 id="demo-h2">Scroll dài · Lenis demo</h2><span>no pinning → Phase 4</span></div>
+    <div class="long"><code>duration ~1.2 · expo-out · anchor → lenis.scrollTo · bundle thẳng, lazy Phase 10 · verify: scroll tay + console sạch + ScrollTrigger sync</code></div>
+  </section>
+</PageLayout>

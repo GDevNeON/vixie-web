@@ -1,0 +1,15 @@
+---
+/**
+ * Logo — wraps the real brand SVGs (B11/D10).
+ * `lm` live in header (Phase 1); `dm` carried for Phase 2 dark.
+ * NO CSS-grid brand-mark in prod.
+ */
+export interface Props {
+  variant?: 'lm' | 'dm';
+  alt?: string;
+}
+
+const { variant = 'lm', alt = 'Vixie' } = Astro.props;
+const src = variant === 'dm' ? '/vixie-brand-dm.svg' : '/vixie-brand-lm.svg';
+---
+<img src={src} alt={alt} width="87" height="28" />

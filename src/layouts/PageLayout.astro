@@ -1,0 +1,27 @@
+---
+/**
+ * PageLayout — D06 default (planner-locked): BaseLayout + 1400/24 container + page header.
+ * No other delta. Pages own their header markup via the `page-header` slot.
+ */
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  noindex?: boolean;
+  currentPath?: string;
+}
+
+const { currentPath = '/', ...seo } = Astro.props;
+---
+<BaseLayout currentPath={currentPath} {...seo}>
+  <div class="shell">
+    <slot name="page-header" />
+    <slot />
+  </div>
+</BaseLayout>

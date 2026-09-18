@@ -1,0 +1,62 @@
+---
+/**
+ * `/tokens` — FOUN-02 visual check (UI-SPEC §8.2, CONTEXT B10).
+ * Verify vehicle inside the same header/footer shell (D20).
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+---
+<PageLayout title="/tokens · visual check — Vixie Web" currentPath="/tokens">
+  <div class="sec"><h1 class="sec-title">/tokens · visual check</h1><span>CMYK · surfaces · type · controls</span></div>
+  <div class="grid">
+    <div class="box s3" style="background:var(--color-cyan)">
+      <span class="lab" style="color:var(--color-ink)">C · action</span>
+      <div class="big">#00AEEF</div>
+      <code style="color:var(--color-ink)">CTA · focus · link</code>
+    </div>
+    <div class="box s3" style="background:var(--color-magenta)">
+      <span class="lab" style="color:var(--color-ink)">M · emotion/error</span>
+      <div class="big" style="color:var(--color-ink)">#ED008C</div>
+      <code style="color:var(--color-ink)">::selection · snackbar err</code>
+    </div>
+    <div class="box s3" style="background:var(--color-yellow)">
+      <span class="lab" style="color:var(--color-ink)">Y · energy/degraded</span>
+      <div class="big">#FFF000</div>
+      <code style="color:var(--color-ink)">cache · boost · không fill nền (B09)</code>
+    </div>
+    <div class="box s3" style="background:var(--color-ink);color:var(--color-paper)">
+      <span class="lab" style="color:var(--color-yellow)">K · structure</span>
+      <div class="big">#101010</div>
+      <code style="color:var(--color-paper)">text · line-strong · shell</code>
+    </div>
+    <div class="box s8">
+      <span class="lab">type · Plex Sans + Mono · latin+vi</span>
+      <div class="type-sample">companion thị trường</div>
+      <p class="small">display 72 · xl 36 · lg 24 · body 15/1.5/65ch · mono 11/13 · Sans 400–700 · Mono 400–600 · static · &lt;200KB</p>
+    </div>
+    <div class="box s4">
+      <span class="lab">space · radius · ease</span>
+      <code>--space 4·8·12·16·24·32·48·64·96<br />--radius 2px / 999px<br />--ease expo-out 180ms · full 80→600<br />container 1400/24 · hairline 1px<br />CMYK + surfaces only</code>
+    </div>
+    <div class="box s4">
+      <span class="lab">surfaces ×7</span>
+      <code>white #fff · paper #f7f7f5 · deep #ededeb · line #c9c9c5 · faint #777 · soft #454545 · ink #101010 · light only</code>
+    </div>
+    <div class="box s4">
+      <span class="lab">controls</span>
+      <p>
+        <button class="btn cy" type="button">Cyan</button>
+        <button class="btn" type="button">Ink</button>
+        <button class="btn gh" type="button">Ghost</button>
+      </p>
+      <p style="margin-top:8px"><span class="chip">chip</span><span class="chip">999px</span></p>
+      <p style="margin-top:8px">
+        <label class="lab" for="demo-inp">Ô demo · tắt</label>
+        <input class="inp" id="demo-inp" placeholder="chỉ demo · tắt" disabled />
+      </p>
+    </div>
+    <div class="box s4">
+      <span class="lab">motion scale</span>
+      <code>instant 80 · fast 130 · mid 180 · normal 260 · slow 400 · story 600 · expo-out · reduced-motion settle ngay</code>
+    </div>
+  </div>
+</PageLayout>
