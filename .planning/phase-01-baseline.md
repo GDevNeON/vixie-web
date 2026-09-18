@@ -14,7 +14,7 @@ Prior: Wave 0 + tracer (local green, Vercel live user-owned) + 2-1 fonts + 2-2 d
 | V3 | fonts self-hosted, no swap, <200KB, exactly 2 preloads | `public/fonts/*.woff2`: 14 files, sum **191,212 bytes (187KB) < 204,800**. `dist/index.html`: exactly **2** `rel="preload" as="font"` (Sans vi 600 + Sans vi 400). Zero remote font URLs (`googleapis/gstatic/fontsource` count = 0). Cold screenshot `hero-cold.png`: hero diacritics (ồ/ữ/ộ/ề) render in Plex, no visible FOUT, no clipping (lh floors hold). | ✅ green |
 | V4 | shell consistency + burger + landmarks + 404 | `/`, `/tokens`, `/404` all contain `<header` + `<main` + `<footer` (+ `<nav` on index). Header burger: `aria-label="Mở menu"`, `aria-expanded="false"`, `aria-controls="site-nav"`, MENU label; progressbar `role=progressbar` + live `aria-valuenow`. `dist/404.html` = "Không tìm thấy trang. Về trang chủ." inside BaseLayout shell. Dead nav items are `span aria-disabled` (zero `href="#"` per tracer acceptance). Screenshots: `hero-cold.png` (desktop shell), `mobile-burger.png` (390px, burger MENU visible, no h-scroll). | ✅ green |
 | V5 | scroll-feel + console + reduced-motion | Code proof: `src/lib/lenis-init.ts` — single `gsap.ticker.add(raf)` (line 87), `lenis.on('scroll', ScrollTrigger.update)`, `duration: 1.2` + expo-out easing (E04), `gsap.ticker.lagSmoothing(0)`; zero `requestAnimationFrame` in src outside one comment line (no double-raf). Reduced-motion: `matchMedia('(prefers-reduced-motion: reduce)')` skips construction + settles reveals (`lenis-init.ts:47`), CSS `@media (prefers-reduced-motion: reduce)` in `global.css:693`, BaseLayout inline script strips to native fallback on init failure. Manual feel note: long-scroll glide ~1.2s expo confirmed during tracer; console 0 errors on scroll (build emitted no client errors; e2e run clean). | ✅ green (code proof + manual feel note) |
-| V6 | Vercel live from `vixie-web` root | Local `dist/` proof: 4 pages + fonts + `_astro` bundles emitted; `.vercel/output/static` copy step ran. Live URL: **USER-OWNED, pending user confirmation** — prior tracer deploy live per handoff; no dashboard access in this session, so URL re-verification (curl 200 on `/` + `/tokens`, Node 20.x pin, previews ON) is a manual TODO for the repo owner. | ✅ green local / ⚠️ USER-OWNED pending (F14 live-URL slot held, not failed) |
+| V6 | Vercel live from `vixie-web` root | Local `dist/` proof: 4 pages + fonts + `_astro` bundles emitted; `.vercel/output/static` copy step ran. Live URL **confirmed by owner 2026-09-18: `https://wallpapervixieai.vercel.app` — curl 200 on `/` + `/tokens`.** | ✅ green (live verified) |
 | V7 | CI check+build green | `.github/workflows/ci.yml`: job `check-build` runs separate `npm run check` + `npm run build` steps (attributable); `e2e` job `continue-on-error: true` per F07 (local green gates Phase 1, CI enablement = Phase 2 follow-up). Local equivalents of both gate steps green this run. | ✅ green (local proof; remote Actions run = owner TODO on PR) |
 | V8 | Playwright 1-smoke green | `npm run test:e2e` → **1 passed (31.7s)**: `homepage renders header + footer + h1` vs build+preview on :4321. | ✅ green |
 
@@ -27,8 +27,8 @@ Prior: Wave 0 + tracer (local green, Vercel live user-owned) + 2-1 fonts + 2-2 d
 | 3 | Plex Sans+Mono self-hosted, preloaded, no visible swap on cold load | ✅ 191,212 B, 2 preloads, cold screenshot clean |
 | 4 | BaseLayout + PageLayout consistent header/footer | ✅ `/` + `/tokens` + 404 share shell; burger + landmarks verified |
 | 5 | Lenis active + GSAP ScrollTrigger sync, no conflicts | ✅ single ticker loop, no stray rAF, reduced-motion kill |
-| 6 | Deploys to Vercel from `vixie-web` | ⚠️ USER-OWNED pending — local dist proof green; owner confirms live URL |
-| F14 | Live URL recorded | ⬜ `https://<vixie-web>.vercel.app` — placeholder, owner fills in |
+| 6 | Deploys to Vercel from `vixie-web` | ✅ `https://wallpapervixieai.vercel.app` (live 200 on `/` + `/tokens`) |
+| F14 | Live URL recorded | ✅ `https://wallpapervixieai.vercel.app` |
 
 ## Numbers
 
@@ -49,9 +49,9 @@ Captured via `npx playwright screenshot` against local `astro preview` (build ou
 
 Manual TODOs (do NOT fail this task): burger OPEN-state shot, reduced-motion state shot (toggle OS setting → native scroll), production cold-load + Disable-cache watch on the live Vercel URL.
 
-## Vercel Pending Note
+## Vercel Live Note
 
-Deploy is user-owned. Local `dist/` + `.vercel/output/static` prove deployability. Owner still to confirm: preset Astro, build `npm run build`, output `dist`, Node override **20.x**, zero env vars, free `*.vercel.app`, previews ON, live URL 200 on `/` + `/tokens`.
+Deployed by owner at `https://wallpapervixieai.vercel.app` — verified 200 on `/` + `/tokens` on 2026-09-18. Dashboard items still owner-held: preset Astro, build `npm run build`, output `dist`, Node override **20.x**, zero env vars, previews ON.
 
 ## F15 Statement
 
@@ -91,4 +91,4 @@ Snapshots: none — installed `impeccable` binary supports `detect` only (`criti
 
 ### Gate verdict
 
-**🔴 RED — phase does NOT pass.** DoD 1–5 + V1–V5/V7–V8 green, V6 live URL user-owned pending, but 2-6 critique <90% keeps the ratchet closed per plan ("phase does not pass with 2-6 red, even if 2-5 is green"). No silent pass: content phases (3/4) + token/font follow-ups (Phase 2) + bundle diet (Phase 10) own the exits above. Vercel live-URL confirmation remains the F14 manual TODO.
+**🔴 RED — phase does NOT pass.** DoD 1–6 + V1–V5/V7–V8 green, V6 live verified (`https://wallpapervixieai.vercel.app`, 200 on `/` + `/tokens`), but 2-6 critique <90% keeps the ratchet closed per plan ("phase does not pass with 2-6 red, even if 2-5 is green"). No silent pass: content phases (3/4) + token/font follow-ups (Phase 2) + bundle diet (Phase 10) own the exits above.

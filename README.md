@@ -54,8 +54,7 @@ https://github.com/IBM/plex. See `public/fonts/README`.
 
 ## Phase 1 DoD (scaffold + design tokens)
 
-Live URL: `https://<vixie-web>.vercel.app` (USER-OWNED pending — owner fills in;
-local `dist/` proof green, see `.planning/phase-01-baseline.md`).
+Live URL: `https://wallpapervixieai.vercel.app` (verified 200 on `/` + `/tokens`, 2026-09-18).
 
 | # | Criterion | Status |
 |---|-----------|--------|
@@ -64,7 +63,7 @@ local `dist/` proof green, see `.planning/phase-01-baseline.md`).
 | 3 | Plex self-hosted, 2 preloads, no swap (191,212 B) | ✅ |
 | 4 | Consistent header/footer shell (`/` + `/tokens` + 404) | ✅ |
 | 5 | Lenis + ScrollTrigger, reduced-motion kill | ✅ |
-| 6 | Vercel live from `vixie-web` | ⚠️ pending-user |
+| 6 | Vercel live from `vixie-web` | ✅ `https://wallpapervixieai.vercel.app` |
 
 Full V1..V8 truth table: `.planning/phase-01-baseline.md`.
 
