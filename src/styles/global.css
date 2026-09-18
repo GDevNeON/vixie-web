@@ -1,0 +1,700 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Task 2-1: Plex self-host woff2 only (C09). Source: node_modules fontsource files dir.
+   No fontsource JS-CSS imports in prod code. Static weights only (C14), no italic (C05). */
+
+/* --- IBM Plex Sans 400/500/600/700 x latin+vietnamese (8 files) --- */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-400-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-500-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-600-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-700-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
+/* --- IBM Plex Mono 400/500/600 x latin+vietnamese (6 files) --- */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-400-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-500-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-600-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
+/* Fallback metrics (C07/C08) — tuned at implementation from measured font data
+   (fontTools: Plex hhea ascent 1025 / descent 275 / lineGap 0 over 1000upm;
+   Arial avg advance 0.57429em vs Plex 0.56886em ratio 0.9905, xHeight 51.6 vs 51.86
+   ratio 0.9951; Mono advance 600/1000 = 1229/2048 = 60% exact match so 100%).
+   Sans size-adjust 99.3% blends both ratios; ascent/descent copy Plex hhea to
+   stop vertical shift on swap. Verified against cold-load (Disable cache). */
+@font-face {
+  font-family: 'Plex Sans Fallback';
+  src: local('Helvetica'), local('Arial');
+  size-adjust: 99.3%;
+  ascent-override: 102.5%;
+  descent-override: 27.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Plex Mono Fallback';
+  src: local('Courier New'), local('Courier'), local('ui-monospace');
+  size-adjust: 100%;
+  ascent-override: 102.5%;
+  descent-override: 27.5%;
+  line-gap-override: 0%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: 'IBM Plex Sans', 'Plex Sans Fallback', Helvetica, Arial, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.5;
+  min-width: 320px;
+}
+
+/* Brand selection — ink on yellow (16:1, B12) */
+::selection {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+}
+
+/* Focus — 3px cyan ring + 1px ink edge (dual-ring, B12).
+   Cyan ring keeps 3px offset; ink box-shadow hugs the element so focus
+   passes 3:1 non-text on paper (ink-on-paper) and on ink (cyan-on-ink). */
+:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px var(--color-ink);
+}
+
+/* Hairline default 1px line */
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+/* Sections divide with line-strong (B13) */
+section + section {
+  border-top: 1px solid var(--color-line-strong);
+}
+
+/* Container shell 1400px / 24px (B15) */
+.shell {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+/* ---- Phase 1 shell · Task 1-2 (from locked sketch C-hybrid) ---- */
+/* SHELL now; real landing/blog/docs/legal content owned by later phases. */
+
+/* 5px CMYK process strip at very top (D09) */
+.strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 5px;
+}
+.strip i:nth-child(1) { background: var(--color-cyan); }
+.strip i:nth-child(2) { background: var(--color-magenta); }
+.strip i:nth-child(3) { background: var(--color-yellow); }
+.strip i:nth-child(4) { background: var(--color-ink); }
+
+/* Sticky header 64px, paper bg, 1px line-strong (D08/D09) */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-line-strong);
+}
+.top-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+  color: inherit;
+}
+.brand img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+.word {
+  font: 700 13px/1 var(--font-sans);
+  letter-spacing: 0.1em;
+}
+nav.main {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+nav.main a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-line);
+  color: #595959; /* usage-only dead-nav-adjacent tone, NOT a token */
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+nav.main a:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+nav.main a[aria-current="page"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+nav.main a:active { transform: scale(0.98); }
+.hright {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hcta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  background: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+  color: var(--color-ink);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.hcta:hover { transform: translateY(-2px); }
+.hcta:active { transform: scale(0.98); }
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-ink);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur) var(--ease);
+}
+.burger:hover { background: var(--color-paper-deep); }
+.burger:active { transform: scale(0.98); }
+/* Open state mirrors the current-page nav fill so MENU↔ĐÓNG reads at a glance. */
+.burger[aria-expanded="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+/* Scroll progress 2px→3px lock per UI-SPEC §6 (final 3px), sticky under header.
+   Inert without JS: default scaleX(0), live-updated with aria-valuenow only. */
+.progress {
+  display: block;
+  height: 3px;
+  background: var(--color-cyan-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  position: sticky;
+  top: 64px;
+  z-index: 49;
+  pointer-events: none;
+}
+
+/* Hero — VI hello-world (UI-SPEC §8.1, exact copy §11) */
+.hero {
+  display: grid;
+  grid-template-columns: 1.55fr 0.45fr;
+  gap: 40px;
+  padding: 52px 0 40px;
+  border-bottom: 1px solid var(--color-line-strong);
+}
+.kick {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: var(--color-magenta-dark);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+/* lh floor 1.0 + wrap guard: stacked VI marks (ồ/ữ/ộ) never clip (pitfall 6) */
+h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: lowercase;
+  overflow-wrap: break-word;
+}
+h1 em {
+  color: var(--color-cyan-dark);
+  font-style: normal;
+}
+.lead {
+  max-width: 52ch;
+  margin-top: 16px;
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+}
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur-mid, 180ms) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.98); }
+.btn.cy {
+  background: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-ink);
+}
+.btn.gh {
+  background: transparent;
+  color: var(--color-ink);
+}
+.btn.gh:hover { background: var(--color-paper-deep); }
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+.card {
+  border-top: 5px solid var(--color-yellow);
+  padding-top: 14px;
+  align-self: end;
+}
+.card b {
+  font-size: var(--text-lg);
+  letter-spacing: -0.03em;
+  display: block;
+  margin-bottom: 6px;
+}
+.card p,
+.small {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+code {
+  /* C13: mono body paths/code = Plex Mono 400 13px (--text-sm), lh 1.6 */
+  font-family: 'IBM Plex Mono', 'Plex Mono Fallback', ui-monospace, SFMono-Regular, monospace;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  overflow-wrap: break-word;
+}
+details summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font: 600 var(--text-xs)/1.6 var(--font-mono);
+  color: #595959; /* usage-only, NOT a token */
+}
+details summary:hover { color: var(--color-ink); }
+details p { margin-top: 8px; }
+
+/* Section bars + 12-col token grid */
+.sec {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-line-strong);
+  border-bottom: 1px solid var(--color-line);
+  margin: 52px 0 20px;
+}
+.sec h2,
+.sec .sec-title {
+  font-size: var(--text-lg);
+  letter-spacing: -0.03em;
+}
+.sec span {
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  color: #595959; /* usage-only, NOT a token */
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+  background: var(--color-line-strong);
+  border: 1px solid var(--color-line-strong);
+}
+.box {
+  background: var(--color-paper);
+  padding: 18px;
+  min-height: 110px;
+  min-width: 0;
+}
+.s3 { grid-column: span 3; }
+.s4 { grid-column: span 4; }
+.s6 { grid-column: span 6; }
+.s8 { grid-column: span 8; }
+.s12 { grid-column: span 12; }
+.lab {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: #595959; /* usage-only ≈7:1 on paper; --ink-faint NEVER readable text */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  display: block;
+}
+.nav-lab {
+  align-self: center;
+  margin: 0 6px;
+}
+.big {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  overflow-wrap: break-word;
+}
+.type-sample {
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+/* Controls demo */
+.inp {
+  width: 100%;
+  max-width: 340px;
+  min-height: 44px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  padding: 0 12px;
+  background: transparent;
+  color: var(--color-ink);
+  font: 400 var(--text-sm)/1.5 var(--font-sans);
+}
+.inp:focus {
+  border-color: var(--color-cyan);
+  box-shadow: inset 0 -2px 0 var(--color-cyan);
+}
+/* Global 3px :focus-visible stays on top of the inset bar */
+.inp::placeholder {
+  color: #595959; /* AA at full opacity */
+  opacity: 1;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-chip);
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  margin: 0 6px 6px 0;
+  overflow-wrap: break-word;
+}
+
+/* Dead-placeholder system: readable #595959 (usage-only), never opacity wash,
+   never fake-live href — plain non-focusable spans only */
+.dim-nav {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px dashed var(--color-line-strong);
+  color: #595959;
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: not-allowed;
+}
+.dim-blk {
+  display: block;
+  color: #595959;
+  font-size: var(--text-sm);
+  margin-bottom: 6px;
+  cursor: not-allowed;
+}
+.dim-line {
+  color: #595959;
+  cursor: not-allowed;
+}
+
+/* Long Lenis demo block — NO pinning/scrub in Phase 1 (E10) */
+.long {
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-paper-deep);
+  padding: 22px;
+  min-height: 260px;
+  margin-bottom: 14px;
+}
+
+/* Footer shell: 4-col + giant sign-off + baseline (D04) */
+.foot-wrap {
+  padding-bottom: var(--space-9);
+}
+/* lh floor 1.02 + wrap guard + lowercase: ồ/ữ/ộ stay clear (pitfall 6) */
+.giant {
+  font-family: "Comfortaa", "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  /* Comfortaa-700 confined to this sign-off; ships with Phase 2 font pipeline — Plex fallback until then */
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-transform: lowercase;
+  border-top: 1px solid var(--color-line-strong);
+  margin-top: 32px;
+  padding-top: 20px;
+  overflow-wrap: break-word;
+}
+.giant em {
+  color: var(--color-cyan-dark);
+  font-style: normal;
+}
+footer.ft {
+  border-top: 1px solid var(--color-line-strong);
+  margin-top: 48px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+footer.ft > div { min-width: 0; }
+footer.ft h4 {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: #595959;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+footer.ft a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  margin-bottom: 2px;
+  overflow-wrap: break-word;
+}
+footer.ft a:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+footer.ft a.mail {
+  display: inline;
+  min-height: 0;
+  color: var(--color-cyan-dark);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.base {
+  border-top: 1px solid var(--color-line);
+  margin-top: 18px;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font: 500 var(--text-xs)/1.5 var(--font-mono);
+  color: #595959; /* usage-only, NOT a token */
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+}
+
+/* Reveal system (polish 2-3 owns JS): visible by default; .armed hides ONLY
+   when an IntersectionObserver is watching — no-JS/headless stays visible.
+   Gate accepts .js-gated (spec name) or legacy .js; arming script adds both. */
+:is(.js, .js-gated) .rv {
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+:is(.js, .js-gated) .rv.armed {
+  opacity: 0;
+  transform: translateY(10px);
+}
+:is(.js, .js-gated) .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 920px) {
+  .hero { grid-template-columns: 1fr; }
+  /* No-JS default: header row wraps, nav degrades to a wrapped inline list. */
+  .top-inner { flex-wrap: wrap; }
+  nav.main {
+    order: 4;
+    flex-basis: 100%;
+    padding-bottom: var(--space-2);
+  }
+  /* With JS: burger owns the nav as an absolute dropdown panel under header. */
+  :is(.js, .js-gated) nav.main {
+    display: none;
+    order: initial;
+    flex-basis: auto;
+    padding-bottom: 0;
+  }
+  :is(.js, .js-gated) nav.main.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-line-strong);
+    padding: 12px 24px;
+    flex-wrap: wrap;
+  }
+  .word { display: none; }
+  /* Burger is a JS control: hidden without JS (nav is already listed above). */
+  .burger { display: none; }
+  :is(.js, .js-gated) .burger { display: inline-flex; }
+  .s3, .s4, .s6, .s8 { grid-column: span 12; }
+  footer.ft { grid-template-columns: 1fr 1fr; }
+}
+
+/* Footer stacks 4 → 2 (≤920px) → 1 col on narrow; email wraps via .mail. */
+@media (max-width: 600px) {
+  footer.ft { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
+}

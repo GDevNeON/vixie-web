@@ -1,0 +1,73 @@
+@theme {
+  /* Brand CMYK — semantic only, never background fill (B09, review-enforced) */
+  --color-cyan: #00aeef; /* action / focus / link fill; text use cyan-dark (AA) */
+  --color-magenta: #ed008c; /* emotion / snackbar err fill only */
+  --color-yellow: #fff000; /* energy / degraded markers, 5px strip only */
+  --color-ink: #101010; /* primary text, line-strong, primary fills */
+
+  /* Surfaces — light-only (B08); dark deferred to Phase 2 */
+  --color-paper: #f7f7f5; /* page background, 60% dominant */
+  --color-paper-deep: #ededeb; /* boxes, hover fields */
+  --color-white: #ffffff; /* boxes, secondary 30% */
+  --color-line: #c9c9c5; /* default 1px hairlines */
+  --color-line-strong: #101010; /* section / shell dividers (B13) */
+
+  /* Text secondary */
+  --color-ink-soft: #454545; /* readable secondary text */
+  --color-ink-faint: #777777; /* token value only — never readable text (fails AA) */
+
+  /* Text-role dark variants — text on paper only, fills stay vivid */
+  --color-cyan-dark: #006f9b; /* display / link text (vivid cyan fails text AA) */
+  --color-magenta-dark: #920050; /* kicker / emphasis text */
+  --color-yellow-dark: #8a8100; /* degraded text marker */
+
+  /* System — carried, no Phase 1 UI use except swatch lab */
+  --color-green: #008f63;
+  --color-red: #c9342d;
+  /* NO poster accents (B16: no burnt/violet/forest/maroon) */
+
+  /* Type — Plex (C10); NO typography plugin (B14) */
+  --font-sans: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Type scale — values from sketch 01 / CONTEXT B04 */
+  --text-xs: 0.6875rem; /* 11px mono label */
+  --text-xs--line-height: 1.6;
+  --text-sm: 0.8125rem; /* 13px caption */
+  --text-sm--line-height: 1.5;
+  --text-body: 0.9375rem; /* 15px base, max ~65ch */
+  --text-body--line-height: 1.5;
+  --text-md: 1.0625rem; /* 17px lead */
+  --text-md--line-height: 1.5;
+  --text-lg: 1.5rem; /* 24px section title */
+  --text-lg--line-height: 1.2;
+  --text-xl: 2.25rem; /* 36px display-sm */
+  --text-xl--line-height: 1;
+  --text-display: 4.5rem; /* 72px hero; fluid clamp(3rem,7vw,6rem) at usage, lh 1.0 */
+  --text-display--line-height: 1;
+
+  /* Spacing — exact px (B05); plain vars, use var(--space-*) never p-space-* */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px; /* container side padding */
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px; /* sticky header height reference */
+  --space-9: 96px; /* shell bottom padding */
+
+  /* Geometry — web override 2px/999px (B06) */
+  --radius-control: 2px;
+  --radius-chip: 999px;
+
+  /* Motion — cinematic expo-out (E04); plain vars, use var(--dur) */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 180ms;
+  --dur-instant: 80ms;
+  --dur-fast: 130ms;
+  --dur-mid: 180ms;
+  --dur-normal: 260ms;
+  --dur-slow: 400ms;
+  --dur-story: 600ms;
+}
