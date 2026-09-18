@@ -1,0 +1,37 @@
+# ci — Phase 1 scaffold gate (F07).
+# NOTE: Vercel dashboard Node override must stay 20.x for 1-4 (Vercel default
+# is 24.x and drifts — pitfall 7). Mirror of .nvmrc + engines.node.
+name: ci
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+
+jobs:
+  check-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    # F07: local `npm run test:e2e` green gates Phase 1; CI e2e enablement is a
+    # Phase 2 follow-up — this job never blocks merge until then.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
