@@ -1,6 +1,6 @@
 /**
  * LenisIsland — the ONE React island (Phase 1 Task 1-3, A16).
- * Visible `Lenis island live` card doubling as hydration proof (NO Counter, NO Framer).
+ * Visible `Lenis island live` card doubling as hydration proof (NO Counter, NO Framer). Title locked by Task 1-3; status lines VI per F09.
  * Motion wiring lives in ../lib/lenis-init (singleton shared with the BaseLayout
  * inline script); this island only triggers init on mount and tears down on
  * unmount (E13). Direct bundle now via client:load; per-island lazy deferred
@@ -33,11 +33,11 @@ export default function LenisIsland() {
   }, []);
 
   return (
-    <aside className="card" aria-label="Lenis island" data-lenis-island>
+    <aside className="card" aria-label="Lenis" data-lenis-island>
       <b>Lenis island live.</b>
       <p className="small">Cuộn mượt và êm. Tự tắt hiệu ứng khi bạn bật giảm chuyển động.</p>
-      <p className="small" data-hydrated={hydrated ? 'true' : 'false'}>
-        {hydrated ? 'Island hydrated · smooth on.' : 'Island loading…'}
+      <p className="small" aria-live="polite" data-hydrated={hydrated ? 'true' : 'false'}>
+        {hydrated ? 'Đã tải · cuộn mượt.' : 'Đang tải…'}
       </p>
       <details>
         <summary>Ghi chú kỹ thuật</summary>
