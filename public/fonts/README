@@ -1,0 +1,16 @@
+# public/fonts — IBM Plex self-host (Task 2-1, C12 OFL note)
+
+14 × `*.woff2` only (no italic, no cyrillic/greek/latin-ext):
+
+- Sans 400/500/600/700 × latin+vietnamese (8):
+  `ibm-plex-sans-{latin,vietnamese}-{400,500,600,700}-normal.woff2`
+- Mono 400/500/600 × latin+vietnamese (6):
+  `ibm-plex-mono-{latin,vietnamese}-{400,500,600}-normal.woff2`
+
+Source of files only: `npm i @fontsource/ibm-plex-sans @fontsource/ibm-plex-mono`
+copied from `node_modules/@fontsource/*/files/`. No `@fontsource` JS/CSS
+imports in prod code (C09). Total 191212 bytes (<200KB budget, C15).
+
+License: SIL Open Font License 1.1 (OFL).
+Upstream: https://github.com/IBM/plex + https://fontsource.org/fonts/ibm-plex-sans
+and https://fontsource.org/fonts/ibm-plex-mono
