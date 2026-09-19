@@ -1,0 +1,59 @@
+---
+/**
+ * `/en/docs` — DocsLayout stub route (UI-SPEC §8.3; Phase 2 Task 2-3).
+ * SHELL: translated sidebar (DocsLayout dict) + font-pipeline note body +
+ * 404-pattern sample. Sample link uses theme-safe `.docs-link` (vivid cyan
+ * on dark — the old inline cyan-dark FAILED dark contrast).
+ * Real hierarchy/text deferred to Phase 6 (F12 default: complete).
+ */
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const t = useTranslations('en');
+---
+<DocsLayout title="Docs stub · 404 · fonts — Vixie Web" currentPath="/en/docs" lang="en">
+  <div class="sec"><h1 class="sec-title">Docs stub · 404 · fonts</h1><span>placeholder</span></div>
+  <div class="grid">
+    <div class="box s8">
+      <span class="lab">font pipeline · self-host</span>
+      <code>@fontsource Sans + Mono · woff2 + @font-face · swap + size-adjust fallback · preload 2 vi files · OFL note · &lt;200KB</code>
+      <p class="small" style="margin-top:8px">Plex Sans 400–700 + Plex Mono 400–600 · latin + vietnamese · self-hosted, no CDN.</p>
+      <code>/fonts/ibm-plex-sans-vietnamese-600-normal.woff2 · /fonts/ibm-plex-sans-vietnamese-400-normal.woff2</code>
+    </div>
+    <div class="box s4">
+      <span class="lab">404 pattern · sample</span>
+      <p><b>404 ·</b></p>
+      <p class="small">{t('notfound.body')} <a class="docs-link" href="/en/">{t('notfound.home')}</a></p>
+    </div>
+  </div>
+</DocsLayout>
+<style>
+  /* Theme-safe stub link: cyan-dark on paper, vivid cyan on ink (axe pair
+     vivid-on-ink ≈ 7.5, symmetric with the global `.dark .miss a` fix).
+     Scoped style, so the dark ancestor stays :global (html carries no scope). */
+  .docs-link {
+    color: var(--color-cyan-dark);
+    overflow-wrap: break-word;
+    /* Task 2-4 axe link-in-text-block (E10, same precedent as footer .mail):
+       inline link inside a text <p> needs a non-color indicator in BOTH
+       themes — underline always on (contrast alone is not enough). */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  :global(.dark) .docs-link {
+    color: var(--color-cyan);
+  }
+  /* No-JS + OS dark: vars swap without .dark (see global.css D15 block). */
+  @media (prefers-color-scheme: dark) {
+    :global(html:not(.js):not(.js-gated)) .docs-link {
+      color: var(--color-cyan);
+    }
+  }
+  /* Print forces light (D17): vivid link would fail on paper. */
+  @media print {
+    :global(.dark) .docs-link,
+    :global(html:not(.js):not(.js-gated)) .docs-link {
+      color: var(--color-cyan-dark);
+    }
+  }
+</style>

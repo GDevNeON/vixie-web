@@ -1,0 +1,33 @@
+---
+/**
+ * `/vi/` — Vietnamese homepage shell (Phase 2 Task 1-2 tracer-b, FOUN-06/07).
+ * VI copy (UI-SPEC §8.1 + §11 exact); EN twin at src/pages/en/index.astro.
+ * Internal links locale-prefixed (/vi/...). Header/footer chrome wires to
+ * the dict in Task 1-3; Lenis island copy follows with its owner task.
+ */
+import PageLayout from '../../layouts/PageLayout.astro';
+import LenisIsland from '../../components/LenisIsland.tsx';
+---
+<PageLayout title="Vixie Web — Phase 1" currentPath="/vi/">
+  <section class="hero" aria-labelledby="hero-h1">
+    <div>
+      <div class="kick">Phase 1 · FOUN-01..05 · VI first</div>
+      <h1 id="hero-h1">bạn đồng hành <em>sống</em> trên hình nền.</h1>
+      <p class="lead">Phase 1 giao khung sống: cuộn mượt, tokens chuẩn, shell đủ. Tải app mở Phase 2.</p>
+      <div class="row">
+        <a class="btn gh" href="/vi/tokens">Xem /tokens</a>
+      </div>
+      <p class="cta-note small">
+        <button class="btn cy" type="button" disabled aria-describedby="phase2-note">Tải ngay</button>
+        <span class="chip" id="phase2-note">Phase 2</span>
+      </p>
+    </div>
+    <LenisIsland client:load lang="vi" />
+  </section>
+
+  <section aria-labelledby="demo-h2">
+    <div class="sec"><h2 id="demo-h2">Scroll dài · Lenis demo</h2><span>không ghim</span></div>
+    <!-- demo spec (build detail kept out of visual layer): duration ~1.2 · expo-out · anchor lenis.scrollTo · bundle thẳng, lazy Phase 10 · scroll tay + console sạch + ScrollTrigger sync — NO pinning/scrub Phase 1 -->
+    <div class="long"><span class="lab">Mẫu thử · cuộn</span><p class="small">Cuộn chậm qua dải mẫu để cảm nhịp khung sống.</p></div>
+  </section>
+</PageLayout>

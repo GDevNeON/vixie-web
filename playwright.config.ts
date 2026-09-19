@@ -9,4 +9,10 @@ export default defineConfig({
     timeout: 120_000,
     reuseExistingServer: !process.env.CI,
   },
+  // Phase 2 Task 0-1 (V4): chromium-only viewport matrix sharing ONE webServer above.
+  projects: [
+    { name: 'chromium-phone', use: { browserName: 'chromium', viewport: { width: 375, height: 667 } } },
+    { name: 'chromium-tablet', use: { browserName: 'chromium', viewport: { width: 768, height: 1024 } } },
+    { name: 'chromium-desktop', use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } } },
+  ],
 });

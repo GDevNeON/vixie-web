@@ -5,7 +5,7 @@
   --color-yellow: #fff000; /* energy / degraded markers, 5px strip only */
   --color-ink: #101010; /* primary text, line-strong, primary fills */
 
-  /* Surfaces — light-only (B08); dark deferred to Phase 2 */
+  /* Surfaces — light values; `.dark` overrides below (Phase 2 Task 2-1, RESEARCH §2.2) */
   --color-paper: #f7f7f5; /* page background, 60% dominant */
   --color-paper-deep: #ededeb; /* boxes, hover fields */
   --color-white: #ffffff; /* boxes, secondary 30% */
@@ -70,4 +70,18 @@
   --dur-normal: 260ms;
   --dur-slow: 400ms;
   --dur-story: 600ms;
+}
+
+/* Phase 2 Task 2-1 (FOUN-10, RESEARCH §2.2): dark surface swap. Plain CSS AFTER
+   @theme (v4 @theme has no variant redefinition). Surfaces change, CMYK don't:
+   --color-ink UNTOUCHED (it is also a fill color), vivid cyan/magenta/yellow +
+   green/red UNCHANGED. --color-ink-soft dark #c9c9c5 measures 11.46:1 on ink. */
+.dark {
+  --color-paper: #101010;
+  --color-paper-deep: #1a1a1a;
+  --color-white: #1a1a1a;
+  --color-line: #2a2a2a;
+  --color-line-strong: #f7f7f5;
+  --color-ink-soft: #c9c9c5;
+  color-scheme: dark;
 }

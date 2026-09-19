@@ -1,44 +1,53 @@
 ---
 /**
- * Footer — full 4-col shell (D04). Legal/social rows are dead placeholder
- * plain spans, NEVER fake-live href. Live: /tokens link + contact email.
- * Giant Plex sign-off is decorative (aria-hidden).
+ * Footer — full 4-col shell, Phase 2 Task 1-3 (tracer-c, FOUN-06/07, V2/V3).
+ * Shell labels + blurb via t() (locked UI-SPEC §11). Site/legal/support rows
+ * stay dead spans with aria-disabled and translated labels. Email + year live.
+ * Meta /tokens link is locale-aware. Giant stays decorative brand text.
  */
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface Props {
+  lang?: 'en' | 'vi';
+}
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
+const tokensHref = `/${lang}/tokens`;
 ---
 <div class="shell foot-wrap">
   <div class="giant" aria-hidden="true">vixie<em>.</em></div>
   <footer class="ft">
     <div>
-      <span class="lab">Vixie · shell</span>
+      <span class="lab">{t('footer.shell')}</span>
       <p class="small">
-        Promo site điện ảnh. VI mặc định + EN Phase 2. Stack: Astro 5 · Tailwind 4 · Lenis + GSAP · Plex VI.
-        © <span>{year}</span> · <a class="mail" href="mailto:acc.tester.trial@gmail.com">acc.tester.trial@gmail.com</a> (LEGA-06).
+        {t('footer.blurb')}
+        {t('footer.rights', { year: String(year) })} · <a class="mail" href="mailto:acc.tester.trial@gmail.com">acc.tester.trial@gmail.com</a> (LEGA-06).
       </p>
     </div>
     <div>
-      <span class="lab">Site · Phase 2+</span>
-      <span class="dim-blk">Landing</span>
-      <span class="dim-blk">Docs</span>
-      <span class="dim-blk">Blog</span>
-      <span class="dim-blk">Download</span>
+      <span class="lab">{t('footer.site')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.landing')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.docs')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.blog')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.download')}</span>
     </div>
     <div>
-      <span class="lab">Legal · Phase 2+</span>
-      <span class="dim-blk">Privacy</span>
-      <span class="dim-blk">Terms</span>
-      <span class="dim-blk">Content</span>
-      <span class="dim-blk">Changelog</span>
+      <span class="lab">{t('footer.legal')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.privacy')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.terms')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.content')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.changelog')}</span>
     </div>
     <div>
-      <span class="lab">Meta</span>
-      <a href="/tokens">/tokens</a>
-      <span class="lab">Support · Contact · Phase 2+</span>
-      <span class="dim-blk">Support</span>
-      <span class="dim-blk">Contact</span>
+      <span class="lab">{t('footer.meta')}</span>
+      <a href={tokensHref}>/tokens</a>
+      <span class="lab">{t('footer.supportcontact')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.support')}</span>
+      <span class="dim-blk" aria-disabled="true">{t('footer.contact')}</span>
     </div>
   </footer>
-  <div class="base">
-    <!-- baseline build note (kept out of visual layer): tokens.css → global.css · @theme CSS-first · MDX build-only · Playwright 1 smoke -->
-  </div>
+  <!-- baseline build note kept out of visual layer: tokens.css → global.css · @theme CSS-first · MDX build-only · Playwright 1 smoke -->
+  <div class="base"></div>
 </div>

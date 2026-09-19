@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+/* Phase 2 Task 2-1 (FOUN-10): docs-form dark variant (NOT &:where(.dark *)). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Task 2-1: Plex self-host woff2 only (C09). Source: node_modules fontsource files dir.
    No fontsource JS-CSS imports in prod code. Static weights only (C14), no italic (C05). */
 
@@ -120,6 +123,24 @@
   unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
 }
 
+/* --- Comfortaa 700 x latin+vietnamese (2 files, giant sign-off ONLY) --- */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/comfortaa-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/comfortaa-vietnamese-700-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
 /* Fallback metrics (C07/C08) — tuned at implementation from measured font data
    (fontTools: Plex hhea ascent 1025 / descent 275 / lineGap 0 over 1000upm;
    Arial avg advance 0.57429em vs Plex 0.56886em ratio 0.9905, xHeight 51.6 vs 51.86
@@ -143,6 +164,10 @@
   line-gap-override: 0%;
 }
 
+:root {
+  color-scheme: light dark;
+}
+
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
@@ -150,6 +175,16 @@ body {
   font-size: var(--text-body);
   line-height: 1.5;
   min-width: 320px;
+  /* Sticky footer: short pages push Footer to viewport bottom, no float mid-view. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* D12: 180ms theme switch; killed under reduced-motion by the * reset below. */
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+main#main {
+  flex: 1;
 }
 
 /* Brand selection — ink on yellow (16:1, B12) */
@@ -165,6 +200,38 @@ body {
   outline: 3px solid var(--color-cyan);
   outline-offset: 3px;
   box-shadow: 0 0 0 1px var(--color-ink);
+}
+
+/* Task 2-2 skip-link (FOUN-09, E05/E06): FIRST focusable in <body>.
+   Off-screen until :focus-visible, then pinned top-left with cyan 3px ring.
+   Dark override uses light-paper literal: var(--color-paper) resolves to ink
+   under .dark, which would hide an ink-on-paper link — same pattern as the
+   .dark fill-label group below. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: 600 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-control);
+}
+.skip-link:focus-visible {
+  top: 12px;
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+.dark .skip-link {
+  background: #f7f7f5;
+  color: #101010;
 }
 
 /* Hairline default 1px line */
@@ -292,6 +359,12 @@ nav.main a:active { transform: scale(0.98); }
 }
 .hcta:hover { transform: translateY(-2px); }
 .hcta:active { transform: scale(0.98); }
+/* Panel-only header copies: hidden everywhere by default; the ≤920px open
+   dropdown re-enables them (rules inside the media query below). Keeps desktop
+   nav (always visible) free of duplicates. */
+.hcta--panel,
+nav.main .hcta--panel,
+.panel-utils { display: none; }
 .burger {
   display: none;
   align-items: center;
@@ -441,7 +514,7 @@ details summary {
   min-height: 44px;
   cursor: pointer;
   font: 600 var(--text-xs)/1.6 var(--font-mono);
-  color: #595959; /* usage-only, NOT a token */
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
 }
 details summary:hover { color: var(--color-ink); }
 details p { margin-top: 8px; }
@@ -465,7 +538,7 @@ details p { margin-top: 8px; }
 }
 .sec span {
   font: 500 var(--text-xs)/1 var(--font-mono);
-  color: #595959; /* usage-only, NOT a token */
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
 }
 .grid {
   display: grid;
@@ -487,7 +560,7 @@ details p { margin-top: 8px; }
 .s12 { grid-column: span 12; }
 .lab {
   font: 600 var(--text-xs)/1 var(--font-mono);
-  color: #595959; /* usage-only ≈7:1 on paper; --ink-faint NEVER readable text */
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed; --ink-faint NEVER readable text */
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 10px;
@@ -530,7 +603,7 @@ details p { margin-top: 8px; }
 }
 /* Global 3px :focus-visible stays on top of the inset bar */
 .inp::placeholder {
-  color: #595959; /* AA at full opacity */
+  color: var(--color-ink-soft); /* AA at full opacity, both themes */
   opacity: 1;
 }
 .chip {
@@ -545,15 +618,15 @@ details p { margin-top: 8px; }
   overflow-wrap: break-word;
 }
 
-/* Dead-placeholder system: readable #595959 (usage-only), never opacity wash,
-   never fake-live href — plain non-focusable spans only */
+/* Dead-placeholder system: readable ink-soft (light #454545 / dark #c9c9c5),
+   never opacity wash, never fake-live href — plain non-focusable spans only */
 .dim-nav {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   padding: 6px 12px;
   border: 1px dashed var(--color-line-strong);
-  color: #595959;
+  color: var(--color-ink-soft);
   font: 500 var(--text-xs)/1 var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -561,13 +634,13 @@ details p { margin-top: 8px; }
 }
 .dim-blk {
   display: block;
-  color: #595959;
+  color: var(--color-ink-soft);
   font-size: var(--text-sm);
   margin-bottom: 6px;
   cursor: not-allowed;
 }
 .dim-line {
-  color: #595959;
+  color: var(--color-ink-soft);
   cursor: not-allowed;
 }
 
@@ -586,7 +659,7 @@ details p { margin-top: 8px; }
 }
 /* lh floor 1.02 + wrap guard + lowercase: ồ/ữ/ộ stay clear (pitfall 6) */
 .giant {
-  font-family: 'IBM Plex Sans', 'Plex Sans Fallback', Helvetica, Arial, sans-serif;
+  font-family: 'Comfortaa', 'IBM Plex Sans', 'Plex Sans Fallback', Helvetica, Arial, sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -603,7 +676,7 @@ details p { margin-top: 8px; }
 }
 footer.ft {
   border-top: 1px solid var(--color-line-strong);
-  margin-top: 48px;
+  margin-top: 24px;
   padding-top: 20px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -612,7 +685,7 @@ footer.ft {
 footer.ft > div { min-width: 0; }
 footer.ft h4 {
   font: 600 var(--text-xs)/1 var(--font-mono);
-  color: #595959;
+  color: var(--color-ink-soft);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -637,6 +710,12 @@ footer.ft a.mail {
   color: var(--color-cyan-dark);
   margin: 0;
   overflow-wrap: anywhere;
+  /* Task 2-2 axe link-in-text-block (E10): inline mail link inside a text
+     <p> needs a non-color indicator in BOTH themes — underline always on
+     (other footer links underline on hover only because they are block
+     44px targets, not in-text). Dark vivid swap stays in the .dark group. */
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .base {
   border-top: 1px solid var(--color-line);
@@ -646,9 +725,153 @@ footer.ft a.mail {
   justify-content: space-between;
   gap: 12px;
   font: 500 var(--text-xs)/1.5 var(--font-mono);
-  color: #595959; /* usage-only, NOT a token */
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
   flex-wrap: wrap;
   overflow-wrap: break-word;
+}
+/* Empty baseline bar carries zero visual weight — no stray bottom rule. */
+.base:empty {
+  display: none;
+}
+
+/* ---- Phase 2 Task 2-1 dark theme (FOUN-10, RESEARCH §2.2–§2.3) ----
+   Surfaces follow the .dark var-swap in tokens.css automatically. Rules below
+   cover only what vars alone cannot: explicit ink text on transparent
+   backgrounds, vivid link/kicker swaps, focus edge, logo/toggle/strip. */
+
+.dark body {
+  /* Light-paper literal: var(--color-paper) resolves to ink under .dark. */
+  color: #f7f7f5;
+}
+
+/* Explicit ink text → light paper on dark (transparent bg over the ink page).
+   .btn labels live in the fill group below (all .btn except .cy). */
+.dark nav.main a,
+.dark .burger,
+.dark .inp {
+  color: #f7f7f5;
+}
+.dark details summary:hover,
+.dark footer.ft a:hover {
+  color: #f7f7f5;
+}
+
+/* Ink fills keep paper labels on dark (RESEARCH §2.3 items 2-3 called the
+   fills SAFE — true, but their `color: var(--color-paper)` labels resolve to
+   ink under the swap; .cy keeps its ink-on-cyan label, hence :not(.cy)). */
+.dark .btn:not(.cy),
+.dark nav.main a:hover,
+.dark nav.main a[aria-current='page'],
+.dark .burger[aria-expanded='true'] {
+  color: #f7f7f5;
+}
+
+/* Dark link/kicker: vivid variants (axe-measured on ink — cyan 7.52,
+   magenta 4.51, both ≥4.5; light tokens UNTOUCHED). */
+.dark .kick {
+  color: var(--color-magenta);
+}
+.dark h1 em,
+.dark .giant em,
+.dark footer.ft a.mail {
+  color: var(--color-cyan);
+}
+/* !important: beats 404.astro's inlined scoped `.miss a` (0,3,1). */
+.dark .miss a {
+  color: var(--color-cyan) !important;
+}
+
+/* Focus dual-ring: cyan ring symmetric-safe; ink edge → paper edge on dark. */
+.dark :focus-visible {
+  box-shadow: 0 0 0 1px #f7f7f5;
+}
+
+/* Logo dual-img swap (D05): zero JS, zero FOUC. Specificity beats .brand img. */
+.brand img.logo-dm {
+  display: none;
+}
+.dark .brand img.logo-dm {
+  display: block;
+}
+.dark .brand img.logo-lm {
+  display: none;
+}
+
+/* Theme toggle: 44px hit target, hidden without JS (OS media rules instead). */
+.theme-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: inherit;
+  font: 600 var(--text-xs) / 1 var(--font-mono);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur) var(--ease);
+}
+:is(.js, .js-gated) .theme-toggle {
+  display: inline-flex;
+}
+/* Mobile duplicate stays hidden on desktop even with JS (mirrors switcher). */
+:is(.js, .js-gated) .theme-toggle.theme-toggle--panel {
+  display: none;
+}
+.theme-toggle:hover {
+  background: var(--color-paper-deep);
+}
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+/* Moon offers dark in light mode; sun offers light in dark mode. */
+.theme-toggle .icon-sun {
+  display: none;
+}
+.dark .theme-toggle .icon-sun {
+  display: block;
+}
+.dark .theme-toggle .icon-moon {
+  display: none;
+}
+
+/* CMYK strip K segment: ink fill vanishes on the ink page → paper via swap. */
+.dark .strip i:nth-child(4) {
+  background: var(--color-line-strong);
+}
+
+/* No-JS (D15): toggle hidden above; OS media drives vars + critical text. */
+@media (prefers-color-scheme: dark) {
+  html:not(.js):not(.js-gated) {
+    --color-paper: #101010;
+    --color-paper-deep: #1a1a1a;
+    --color-white: #1a1a1a;
+    --color-line: #2a2a2a;
+    --color-line-strong: #f7f7f5;
+    --color-ink-soft: #c9c9c5;
+    color-scheme: dark;
+  }
+  html:not(.js):not(.js-gated) body {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) :is(nav.main a, .burger, .btn:not(.cy), .inp) {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) :is(nav.main a:hover, nav.main a[aria-current='page']) {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) .kick {
+    color: var(--color-magenta);
+  }
+  html:not(.js):not(.js-gated) :is(h1 em, .giant em, footer.ft a.mail, .miss a) {
+    color: var(--color-cyan);
+  }
 }
 
 /* Reveal system (polish 2-3 owns JS): visible by default; .armed hides ONLY
@@ -667,6 +890,8 @@ footer.ft a.mail {
 }
 
 @media (max-width: 920px) {
+  /* C16: container side padding 24px desktop (var(--space-5)) → 16px mobile. */
+  .shell { padding-inline: var(--space-4); }
   .hero { grid-template-columns: 1fr; }
   /* No-JS default: header row wraps, nav degrades to a wrapped inline list. */
   .top-inner { flex-wrap: wrap; }
@@ -682,8 +907,22 @@ footer.ft a.mail {
     flex-basis: auto;
     padding-bottom: 0;
   }
+  /* Full hamburger ≤920px: topbar keeps brand + burger only; CTA, switcher
+     and theme toggle live inside the panel (open state below). */
+  :is(.js, .js-gated) .hright > .hcta,
+  :is(.js, .js-gated) .hright > nav.switcher,
+  :is(.js, .js-gated) .hright > .theme-toggle {
+    display: none;
+  }
+  /* Panel CTA: hidden everywhere except the open mobile dropdown. */
+  .hcta--panel { display: none; }
+  /* Panel utility row (switcher + theme): hidden until the dropdown opens. */
+  .panel-utils { display: none; }
   :is(.js, .js-gated) nav.main.open {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
     position: absolute;
     top: calc(100% + 1px);
     left: 0;
@@ -691,8 +930,31 @@ footer.ft a.mail {
     z-index: 60;
     background: var(--color-paper);
     border-bottom: 1px solid var(--color-line-strong);
-    padding: 12px 24px;
-    flex-wrap: wrap;
+    padding: 12px 16px 16px;
+    max-height: calc(100vh - 65px);
+    max-height: calc(100dvh - 65px);
+    overflow-y: auto;
+  }
+  :is(.js, .js-gated) nav.main.open > a {
+    justify-content: flex-start;
+    min-height: 48px;
+  }
+  :is(.js, .js-gated) nav.main.open .hcta--panel {
+    display: inline-flex;
+    justify-content: center;
+  }
+  :is(.js, .js-gated) nav.main.open .panel-utils {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid var(--color-line);
+    padding-top: 12px;
+    margin-top: 6px;
+  }
+  /* Burger panel holds the theme duplicate too (mirrors switcher, D10). */
+  :is(.js, .js-gated) nav.main.open .theme-toggle--panel {
+    display: inline-flex;
   }
   .word { display: none; }
   /* Burger is a JS control: hidden without JS (nav is already listed above). */
@@ -710,4 +972,55 @@ footer.ft a.mail {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   .rv { opacity: 1 !important; transform: none !important; }
+}
+
+/* Print (D17): force light even when .dark is set; hide theme chrome. */
+@media print {
+  /* Print has no time dimension: a mid-transition print would freeze
+     blended colors, so transitions are off here (not motion, just ink). */
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+  }
+  .dark {
+    --color-paper: #f7f7f5;
+    --color-paper-deep: #ededeb;
+    --color-white: #ffffff;
+    --color-line: #c9c9c5;
+    --color-line-strong: #101010;
+    --color-ink-soft: #454545;
+    color-scheme: light;
+  }
+  .dark body {
+    color: var(--color-ink);
+  }
+  .dark :is(nav.main a, .burger, .btn.gh, .inp),
+  .dark details summary:hover,
+  .dark footer.ft a:hover {
+    color: var(--color-ink);
+  }
+  .dark .kick {
+    color: var(--color-magenta-dark);
+  }
+  .dark :is(h1 em, .giant em, footer.ft a.mail) {
+    color: var(--color-cyan-dark);
+  }
+  /* !important: releases the screen !important above back to the light token. */
+  .dark .miss a {
+    color: var(--color-cyan-dark) !important;
+  }
+  .dark :focus-visible {
+    box-shadow: 0 0 0 1px var(--color-ink);
+  }
+  .dark .strip i:nth-child(4) {
+    background: var(--color-ink);
+  }
+  .brand img.logo-dm,
+  .theme-toggle {
+    display: none !important;
+  }
+  .brand img.logo-lm {
+    display: block !important;
+  }
 }

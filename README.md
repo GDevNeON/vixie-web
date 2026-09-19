@@ -67,6 +67,32 @@ Live URL: `https://wallpapervixieai.vercel.app` (verified 200 on `/` + `/tokens`
 
 Full V1..V8 truth table: `.planning/phase-01-baseline.md`.
 
+## Phase 2 DoD (i18n & accessibility foundation)
+
+Live URL: `https://wallpapervixieai.vercel.app` (STALE pre-Phase2 deploy as of
+2026-09-18: `/` + `/tokens` 200, `/en/` + `/vi/` 404 — Phase 2 work is
+uncommitted on `main`, Vercel never built it; re-verify `/en/` + `/vi/` 200
+after push).
+
+| # | Criterion (ROADMAP Phase 2) | Status |
+|---|-----------------------------|--------|
+| 1 | `/en/` + `/vi/` prefixed routes resolve for all pages | ✅ (`i18n.spec.ts` V1) |
+| 2 | Switcher toggles VI↔EN keeping path/query/hash | ✅ (`i18n.spec.ts` V2) |
+| 3 | Dict type-safe — check reds on missing key | ✅ (tripwire + negative proof, V3) |
+| 4 | 375/768/1440 correct, 320 floor, no h-scroll | ✅ (`responsive.spec.ts` V4) |
+| 5 | Reduced-motion kills Lenis/reveals/CSS | ✅ (`motion.spec.ts` V5) |
+| 6 | Theme persists (`vixie-theme`), defaults to OS | ✅ (`theme.spec.ts` V6) |
+| 7 | axe 0 critical/serious, base + samples ×2 themes | ✅ (`a11y.spec.ts` 8 samples ×2, V8) |
+
+Suite 2026-09-18: `npm run check` 0 errors/0 warnings/0 hints (32 files) ·
+`npm run build` 9 pages · `npm run test:e2e` **129 passed, 0 failed**
+(43 tests × 3 viewport projects: phone 375×667, tablet 768×1024,
+desktop 1440×900). Full V1..V10 truth table: `.planning/phase-02-baseline.md`.
+
+Screenshots (header/hero/footer representative full-page set):
+`screenshots/phase2-{en,vi}-{375,768,1440}.png` (light, Task 2-4) +
+`screenshots/phase2-{en,vi}-{375,768,1440}-dark.png` (dark, Task 2-5).
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

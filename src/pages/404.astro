@@ -1,16 +1,49 @@
 ---
 /**
- * 404 — minimal (UI-SPEC §8.4, D17). Inside BaseLayout.
- * Exact VI copy; home link live cyan-dark.
- * No illustration, no tracking, no extra nav.
+ * Root 404 — locale-aware fallback (Phase 2 Task 2-3, FOUN-06/07, covers V3/V9).
+ * Vercel static serves `dist/404.html` for unknown paths; whether it serves
+ * `dist/en/404.html` for unknown `/en/*` paths is host behavior (02-RESEARCH
+ * §1.5, pitfall 6 — probe decides). Static markup below is EN (default, A01);
+ * the inline script swaps body + home link to the exact §11 VI copy when the
+ * path prefix is `/vi`, so per-locale 404 is observable EVEN IF Vercel only
+ * ever serves this root file. Per-locale `/en/404` + `/vi/404` also exist.
+ * No illustration, no tracking (UI-SPEC §8.4).
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ui } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('en');
+// VI strings via dict (type-checked exact §11 copy) injected into the
+// client-side swap — never duplicated by hand.
+const viBody: string = ui.vi['notfound.body'];
+const viHome: string = ui.vi['notfound.home'];
 ---
-<BaseLayout title="404 ·" currentPath="/404" noindex>
+<BaseLayout title={t('notfound.title')} currentPath="/404" lang="en" noindex>
   <div class="shell miss">
-    <h1>404 ·</h1>
-    <p>Không tìm thấy trang. <a href="/">Về trang chủ.</a></p>
+    <h1>{t('notfound.title')}</h1>
+    <p data-vi-body={viBody} data-vi-home={viHome}>
+      <span data-404-body>{t('notfound.body')}</span>{' '}
+      <a data-404-home href="/en/">{t('notfound.home')}</a>
+    </p>
   </div>
+  <script is:inline>
+    (function () {
+      var p = window.location.pathname || '';
+      var isVi = p === '/vi' || p.indexOf('/vi/') === 0;
+      if (!isVi) return; // EN default (A01) — static markup already correct.
+      var holder = document.querySelector('[data-vi-body]');
+      if (!holder) return;
+      document.documentElement.setAttribute('lang', 'vi');
+      var body = holder.querySelector('[data-404-body]');
+      var home = holder.querySelector('[data-404-home]');
+      if (body) body.textContent = holder.getAttribute('data-vi-body');
+      if (home) {
+        home.textContent = holder.getAttribute('data-vi-home');
+        home.setAttribute('href', '/vi/');
+      }
+    })();
+  </script>
 </BaseLayout>
 <style>
   .miss {
@@ -25,5 +58,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .miss a {
     color: var(--color-cyan-dark);
     overflow-wrap: break-word;
+    /* Task 2-5 axe link-in-text-block (same precedent as footer .mail,
+       docs .docs-link): inline link inside a text <p> needs a non-color
+       indicator in BOTH themes — underline always on. Dark color swaps
+       via the global `.dark .miss a` rule. */
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

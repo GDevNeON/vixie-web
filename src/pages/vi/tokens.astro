@@ -1,16 +1,17 @@
 ---
 /**
- * `/tokens` — FOUN-02 visual check (UI-SPEC §8.2, CONTEXT B10).
+ * `/vi/tokens` — FOUN-02 visual check (UI-SPEC §8.2, CONTEXT B10).
+ * Phase 2 Task 1-2: moved from unprefixed `/tokens` (now 404 by lock).
  * Verify vehicle inside the same header/footer shell (D20).
  */
-import PageLayout from '../layouts/PageLayout.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
 ---
-<PageLayout title="/tokens · visual check — Vixie Web" currentPath="/tokens">
+<PageLayout title="/tokens · visual check — Vixie Web" currentPath="/vi/tokens">
   <div class="sec"><h1 class="sec-title">/tokens · visual check</h1><span>màu · chữ</span></div>
   <div class="grid">
     <div class="box s3" style="background:var(--color-cyan)">
       <span class="lab" style="color:var(--color-ink)">C · action</span>
-      <div class="big">#00AEEF</div>
+      <div class="big" style="color:var(--color-ink)">#00AEEF</div>
       <code style="color:var(--color-ink)">CTA · focus · link</code>
     </div>
     <div class="box s3" style="background:var(--color-magenta)">
@@ -20,13 +21,13 @@ import PageLayout from '../layouts/PageLayout.astro';
     </div>
     <div class="box s3" style="background:var(--color-yellow)">
       <span class="lab" style="color:var(--color-ink)">Y · energy/degraded</span>
-      <div class="big">#FFF000</div>
+      <div class="big" style="color:var(--color-ink)">#FFF000</div>
       <code style="color:var(--color-ink)">cache · boost · không fill nền (B09)</code>
     </div>
-    <div class="box s3" style="background:var(--color-ink);color:var(--color-paper)">
+    <div class="box s3" style="background:var(--color-ink);color:#f7f7f5">
       <span class="lab" style="color:var(--color-yellow)">K · structure</span>
       <div class="big">#101010</div>
-      <code style="color:var(--color-paper)">text · line-strong · shell</code>
+      <code style="color:#f7f7f5">text · line-strong · shell</code>
     </div>
     <div class="box s8">
       <span class="lab">type · Plex Sans + Mono · latin+vi</span>

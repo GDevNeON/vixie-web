@@ -1,16 +1,19 @@
-# public/fonts — IBM Plex self-host (Task 2-1, C12 OFL note)
+# public/fonts — IBM Plex + Comfortaa giant self-host (C12 OFL note)
 
-14 × `*.woff2` only (no italic, no cyrillic/greek/latin-ext):
+16 × `*.woff2` only (no italic, no cyrillic/greek/latin-ext):
 
 - Sans 400/500/600/700 × latin+vietnamese (8):
   `ibm-plex-sans-{latin,vietnamese}-{400,500,600,700}-normal.woff2`
 - Mono 400/500/600 × latin+vietnamese (6):
   `ibm-plex-mono-{latin,vietnamese}-{400,500,600}-normal.woff2`
+- Comfortaa 700 × latin+vietnamese (2, giant sign-off ONLY per UI-SPEC):
+  `comfortaa-{latin,vietnamese}-700-normal.woff2`
 
-Source of files only: `npm i @fontsource/ibm-plex-sans @fontsource/ibm-plex-mono`
+Source of files only: `npm i @fontsource/ibm-plex-sans @fontsource/ibm-plex-mono @fontsource/comfortaa`
 copied from `node_modules/@fontsource/*/files/`. No `@fontsource` JS/CSS
-imports in prod code (C09). Total 191212 bytes (<200KB budget, C15).
+imports in prod code (C09). Total 209284 bytes (Plex 191212 + Comfortaa 18072;
+C15 200KB budget now +4KB over — accepted: giant Comfortaa is UI-SPEC-locked).
 
 License: SIL Open Font License 1.1 (OFL).
 Upstream: https://github.com/IBM/plex + https://fontsource.org/fonts/ibm-plex-sans
-and https://fontsource.org/fonts/ibm-plex-mono
+and https://fontsource.org/fonts/ibm-plex-mono + https://fontsource.org/fonts/comfortaa

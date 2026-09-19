@@ -1,16 +1,18 @@
 ---
 /**
  * DocsLayout — D07 FULL placeholder sidebar shell (Task 2-2).
+ * Phase 2 Task 1-2: locale passes through to BaseLayout (URL-derived when unset).
  * SHELL now; real hierarchy/text deferred to Phase 6, legal text to Phase 9.
  * Sidebar rows are dead plain spans, NEVER links.
  * Desktop: 250px sidebar + body. Mobile (≤920px): 1-col stack.
  */
 import BaseLayout from './BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 export interface Props {
   title?: string;
   description?: string;
-  lang?: string;
+  lang?: 'en' | 'vi';
   canonical?: string;
   ogImage?: string;
   ogType?: string;
@@ -20,18 +22,22 @@ export interface Props {
   currentPath?: string;
 }
 
-const { currentPath = '/docs', ...seo } = Astro.props;
+const { currentPath = '/docs', lang: langProp, ...seo } = Astro.props;
+// Phase 2 Task 2-3: sidebar shell translated per locale (UI-SPEC §8.3, §11
+// docs.sidebar rows). Explicit prop wins; otherwise derive from URL (en default).
+const lang = langProp ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
-<BaseLayout currentPath={currentPath} {...seo}>
+<BaseLayout currentPath={currentPath} lang={lang} {...seo}>
   <div class="shell docs">
     <aside class="docs-side">
-      <nav aria-label="Docs">
-        <p class="side-head">Thanh bên Docs · chỗ giữ</p>
+      <nav aria-label={t('docs.sidebar')}>
+        <p class="side-head">{t('docs.sidebar')}</p>
         <span class="lab">Phase 2+</span>
-        <span class="dim-line">— Cài đặt</span>
-        <span class="dim-line">— Bắt đầu</span>
-        <span class="dim-line">— Tùy chỉnh</span>
-        <span class="dim-line">— FAQ</span>
+        <span class="dim-line" aria-disabled="true">{t('docs.setup')}</span>
+        <span class="dim-line" aria-disabled="true">{t('docs.start')}</span>
+        <span class="dim-line" aria-disabled="true">{t('docs.customize')}</span>
+        <span class="dim-line" aria-disabled="true">{t('docs.faq')}</span>
       </nav>
     </aside>
     <div class="docs-body">

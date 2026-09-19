@@ -1,0 +1,42 @@
+---
+/**
+ * `/vi/404` — per-locale 404 (Phase 2 Task 2-3, FOUN-06/07, covers V3/V9).
+ * Exact §11 VI copy via dict; home link → `/vi/`.
+ * No illustration, no tracking (UI-SPEC §8.4). Dark link handled by the
+ * global `.dark .miss a` rule (Task 2-1); light rule scoped below.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('vi');
+---
+<BaseLayout title={t('notfound.title')} currentPath="/vi/404" lang="vi" noindex>
+  <div class="shell miss">
+    <h1>{t('notfound.title')}</h1>
+    <p>
+      <span>{t('notfound.body')}</span>{' '}
+      <a href="/vi/">{t('notfound.home')}</a>
+    </p>
+  </div>
+</BaseLayout>
+<style>
+  .miss {
+    padding-block: var(--space-7);
+  }
+  .miss p {
+    margin-top: var(--space-4);
+    font-size: var(--text-md);
+    color: var(--color-ink-soft);
+    overflow-wrap: break-word;
+  }
+  .miss a {
+    color: var(--color-cyan-dark);
+    overflow-wrap: break-word;
+    /* Task 2-5 axe link-in-text-block (same precedent as footer .mail,
+       docs .docs-link): inline link inside a text <p> needs a non-color
+       indicator in BOTH themes — underline always on. Dark color swaps
+       via the global `.dark .miss a` rule. */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

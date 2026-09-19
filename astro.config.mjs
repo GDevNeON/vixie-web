@@ -11,10 +11,18 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://localhost:4321',
+  site: process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:4321',
   output: 'static',
   trailingSlash: 'ignore',
   adapter: vercel(),
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'vi'],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
+    },
+  },
 
   integrations: [react(), mdx()],
 

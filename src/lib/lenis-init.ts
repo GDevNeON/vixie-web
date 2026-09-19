@@ -70,6 +70,15 @@ export async function initLenis(): Promise<Cleanup> {
     return noop;
   }
 
+  // Task 2-2 motion-guard sweep (E01): re-check reduce FIRST before touching
+  // ANY motion API — the OS setting may flip during the async imports above.
+  // Grep audit: every `new Lenis` / gsap site below sits ≤10 lines under guard.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    doc.documentElement.removeAttribute('data-lenis-init');
+    settleReveals(doc);
+    return noop;
+  }
+
   gsap.registerPlugin(ScrollTrigger); // E06
 
   const lenis = new LenisCtor({
