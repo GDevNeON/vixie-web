@@ -1,0 +1,59 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'vi';
+}
+
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<div class="shell docs">
+  <aside class="docs-side">
+    <nav aria-label={t('docs.sidebar')}>
+      <p class="side-head">{t('docs.sidebar')}</p>
+      <span class="lab">Phase 2+</span>
+      <span class="dim-line" aria-disabled="true">{t('docs.setup')}</span>
+      <span class="dim-line" aria-disabled="true">{t('docs.start')}</span>
+      <span class="dim-line" aria-disabled="true">{t('docs.customize')}</span>
+      <span class="dim-line" aria-disabled="true">{t('docs.faq')}</span>
+    </nav>
+  </aside>
+  <div class="docs-body"><slot /></div>
+</div>
+<style>
+  .docs {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+  }
+  .docs-side {
+    min-width: 0;
+    align-self: start;
+    border: 1px solid var(--color-line-strong);
+    background: var(--color-paper);
+    padding: var(--space-4);
+  }
+  .side-head {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow-wrap: break-word;
+    margin-bottom: var(--space-3);
+  }
+  .docs-side .dim-line {
+    display: block;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    padding-block: var(--space-2);
+    overflow-wrap: break-word;
+  }
+  .docs-body {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 920px) {
+    .docs { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

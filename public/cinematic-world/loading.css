@@ -1,0 +1,30 @@
+/* Loading: minimal corner widget — large % number + thin bar, bottom-right */
+/* Sits above the dark curtain (z-index 300) → uses light paper colors */
+.page-loader{position:fixed;bottom:40px;right:48px;z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
+.loader-pct{font-size:clamp(72px,9vw,120px);font-weight:600;letter-spacing:-.06em;line-height:1;color:var(--paper);font-variant-numeric:tabular-nums}
+.loader-bar-track{width:clamp(120px,14vw,200px);height:2px;background:rgba(247,247,245,.25);border-radius:1px;overflow:hidden}
+.loader-bar{height:100%;width:0%;background:var(--cyan);border-radius:1px;transition:width 280ms cubic-bezier(.4,0,.2,1)}
+
+/* Loader exit */
+.page-loader.is-leaving{animation:loader-exit 380ms cubic-bezier(.4,0,1,1) forwards}
+@keyframes loader-exit{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
+
+/* Reveal curtain: 6 vertical ink strips, stagger slide up */
+#reveal-curtain{position:fixed;inset:0;z-index:200;display:flex;pointer-events:none;overflow:hidden}
+.curtain-strip{flex:1;height:100%;background:var(--ink);will-change:transform}
+
+body.vixie-reveal .curtain-strip:nth-child(1){animation:strip-exit 700ms   0ms cubic-bezier(.76,0,.24,1) forwards}
+body.vixie-reveal .curtain-strip:nth-child(2){animation:strip-exit 700ms  55ms cubic-bezier(.76,0,.24,1) forwards}
+body.vixie-reveal .curtain-strip:nth-child(3){animation:strip-exit 700ms 110ms cubic-bezier(.76,0,.24,1) forwards}
+body.vixie-reveal .curtain-strip:nth-child(4){animation:strip-exit 700ms 165ms cubic-bezier(.76,0,.24,1) forwards}
+body.vixie-reveal .curtain-strip:nth-child(5){animation:strip-exit 700ms 220ms cubic-bezier(.76,0,.24,1) forwards}
+body.vixie-reveal .curtain-strip:nth-child(6){animation:strip-exit 700ms 275ms cubic-bezier(.76,0,.24,1) forwards}
+
+@keyframes strip-exit{from{transform:translateY(0)}to{transform:translateY(-100%)}}
+
+@media(max-width:600px){.page-loader{bottom:28px;right:24px}.loader-pct{font-size:64px}.loader-bar-track{width:100px}}
+@media(prefers-reduced-motion:reduce){
+  .page-loader.is-leaving{animation:none;opacity:0}
+  .loader-bar{transition:none}
+  .curtain-strip{animation:none!important;display:none}
+}

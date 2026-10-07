@@ -1,0 +1,20 @@
+---
+import Markup from './Markup.astro';
+import hero from './markup/home/hero.html?raw';
+import intro from './markup/home/intro.html?raw';
+import story from './markup/home/story.html?raw';
+import demoTeaser from './markup/home/demo-teaser.html?raw';
+import creator from './markup/home/creator.html?raw';
+import faq from './markup/home/faq.html?raw';
+import finalCta from './markup/home/final-cta.html?raw';
+
+interface Props { lang: 'en' | 'vi'; }
+const { lang } = Astro.props;
+---
+  <Markup html={hero} lang={lang} />
+  <Markup html={intro} lang={lang} />
+  <Markup html={story} lang={lang} />
+  <Markup html={demoTeaser} lang={lang} />
+  <Markup html={creator} lang={lang} />
+  <Markup html={faq} lang={lang} />
+  <Markup html={finalCta} lang={lang} />

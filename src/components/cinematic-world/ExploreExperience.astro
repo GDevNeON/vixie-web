@@ -1,0 +1,18 @@
+---
+import Markup from './Markup.astro';
+import eyebrow from './markup/explore/eyebrow.html?raw';
+import title from './markup/explore/title.html?raw';
+import intro from './markup/explore/intro.html?raw';
+import resources from './markup/explore/resources.html?raw';
+import download from './markup/explore/download.html?raw';
+import article from './markup/explore/article.html?raw';
+
+interface Props { lang: 'en' | 'vi'; }
+const { lang } = Astro.props;
+---
+  <Markup html={eyebrow} lang={lang} />
+  <Markup html={title} lang={lang} />
+  <Markup html={intro} lang={lang} />
+  <Markup html={resources} lang={lang} />
+  <Markup html={download} lang={lang} />
+  <Markup html={article} lang={lang} />

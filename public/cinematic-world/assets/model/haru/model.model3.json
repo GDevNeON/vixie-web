@@ -1,0 +1,39 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "Haru.moc3",
+    "Textures": [
+      "Haru.2048/texture_00.png",
+      "Haru.2048/texture_01.png"
+    ],
+    "Physics": "Haru.physics3.json",
+    "Pose": "Haru.pose3.json"
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    }
+  ],
+  "HitAreas": [
+    {
+      "Id": "HitArea",
+      "Name": "Head"
+    },
+    {
+      "Id": "HitArea2",
+      "Name": "Body"
+    }
+  ]
+}

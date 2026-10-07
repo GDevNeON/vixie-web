@@ -1,0 +1,13 @@
+---
+import Markup from './Markup.astro';
+import homeLoader from './markup/home-loader.html?raw';
+import previewLoader from './markup/preview-loader.html?raw';
+
+interface Props {
+  page: string;
+}
+
+const { page } = Astro.props;
+const html = page === 'home' ? homeLoader : previewLoader;
+---
+<Markup html={html} />

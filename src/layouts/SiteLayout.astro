@@ -1,0 +1,116 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import PageLoader from '../components/cinematic-world/PageLoader.astro';
+import SiteHeader from '../components/cinematic-world/SiteHeader.astro';
+import SiteFooter from '../components/cinematic-world/SiteFooter.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'en' | 'vi';
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  noindex?: boolean;
+  page?: 'home' | 'demo' | 'explore' | 'content';
+  mainClass?: string;
+}
+
+const {
+  title,
+  description = 'A little life. A more personal screen. Meet the Vixie companion for Android and Windows.',
+  canonical,
+  ogImage,
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
+  noindex = false,
+  page = 'content',
+  mainClass,
+} = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const isEnglish = lang === 'en';
+const pageTitle = title ?? (page === 'home'
+  ? 'vixie.ai — A little life. On your screen.'
+  : page === 'demo'
+    ? 'vixie.ai — Meet your companion'
+    : page === 'explore'
+      ? 'vixie.ai — Your next little chapter'
+      : 'Vixie Web — A little life. On your screen.');
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const pathname = Astro.url.pathname;
+const canonicalUrl = canonical ?? (site ? `${site}${pathname}` : undefined);
+const suffix = pathname.replace(/^\/(en|vi)(?=\/|$)/, '') || '/';
+const localePath = suffix.startsWith('/') ? suffix : `/${suffix}`;
+const enUrl = site ? `${site}/en${localePath}` : undefined;
+const viUrl = site ? `${site}/vi${localePath}` : undefined;
+const ogLocale = isEnglish ? 'en_US' : 'vi_VN';
+const ogLocaleAlternate = isEnglish ? 'vi_VN' : 'en_US';
+const jsonLd = { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Vixie Web', inLanguage: lang };
+const hasLiveScene = page === 'home' || page === 'demo';
+const hasExperienceScripts = page === 'home' || page === 'demo' || page === 'explore';
+const contentClass = mainClass ?? (page === 'demo' ? 'lab-main' : page === 'explore' ? 'directory' : undefined);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {enUrl && <link rel="alternate" hreflang="en" href={enUrl} />}
+    {viUrl && <link rel="alternate" hreflang="vi" href={viUrl} />}
+    {enUrl && <link rel="alternate" hreflang="x-default" href={enUrl} />}
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f5" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="preload" href="/fonts/ibm-plex-sans-vietnamese-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-sans-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/cinematic-world/style.css" />
+    <link rel="stylesheet" href="/cinematic-world/motion.css" />
+    <link rel="stylesheet" href="/cinematic-world/showcase.css" />
+    <link rel="stylesheet" href="/cinematic-world/loading.css" />
+    <noscript><style>.page-loader{display:none}</style></noscript>
+  </head>
+  <body data-page={page}>
+    {hasExperienceScripts && <PageLoader page={page} />}
+    {hasExperienceScripts && <script is:inline src="/cinematic-world/loading.js"></script>}
+    <a class="skip" href="#main">{isEnglish ? 'Skip to content' : 'Đến nội dung'}</a>
+    {hasExperienceScripts && <div class="progress" style="transform:scaleX(0)"></div>}
+    <SiteHeader lang={lang} currentPath={pathname} />
+    <main id="main" class={contentClass} tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter lang={lang} />
+    <script is:inline>
+      document.querySelector('.skip')?.addEventListener('click', () => {
+        document.getElementById('main')?.focus({ preventScroll: true });
+      });
+    </script>
+    {hasExperienceScripts && <script is:inline src="/cinematic-world/assets/vendor/gsap.min.js"></script>}
+    {hasExperienceScripts && <script is:inline src="/cinematic-world/assets/vendor/ScrollTrigger.min.js"></script>}
+    {hasExperienceScripts && <script is:inline src="/cinematic-world/assets/vendor/lenis.min.js"></script>}
+    {hasLiveScene && <script is:inline src="/cinematic-world/assets/vendor/live2dcubismcore.min.js"></script>}
+    {hasLiveScene && <script is:inline src="/cinematic-world/assets/vendor/pixi.min.js"></script>}
+    {hasLiveScene && <script is:inline src="/cinematic-world/assets/vendor/live2d.min.js"></script>}
+    <script is:inline src="/cinematic-world/app.js"></script>
+    {hasExperienceScripts && <script is:inline src="/cinematic-world/studio.js"></script>}
+    {hasLiveScene && <script is:inline type="module" src="/cinematic-world/scene.js"></script>}
+  </body>
+</html>

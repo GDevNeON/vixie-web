@@ -1,0 +1,15 @@
+---
+interface Props {
+  html: string;
+  lang?: 'en' | 'vi';
+}
+
+const { html, lang = 'en' } = Astro.props;
+const localeRoot = `/${lang}/`;
+const localizedMarkup = html
+  .replace(/src="assets\//g, 'src="/cinematic-world/assets/')
+  .replace(/href="index\.html(#[^"]*)?"/g, (_match, hash = '') => `href="${localeRoot}${hash}"`)
+  .replace(/href="demo\.html(#[^"]*)?"/g, (_match, hash = '') => `href="/${lang}/demo/${hash}"`)
+  .replace(/href="explore\.html(#[^"]*)?"/g, (_match, hash = '') => `href="/${lang}/explore/${hash}"`);
+---
+<Fragment set:html={localizedMarkup} />

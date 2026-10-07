@@ -1,0 +1,23 @@
+---
+import Wordmark from './Wordmark.astro';
+
+interface Props {
+  lang: 'en' | 'vi';
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const otherLang = lang === 'en' ? 'vi' : 'en';
+const suffix = currentPath.replace(/^\/(en|vi)(?=\/|$)/, '') || '/';
+const languageHref = `/${otherLang}${suffix.startsWith('/') ? suffix : `/${suffix}`}`;
+---
+<header class="site-nav">
+  <a href={`/${lang}/`} aria-label="Vixie home"><Wordmark /></a>
+  <nav class="nav-links" aria-label="Main">
+    <a class="desktop-link" href={`/${lang}/#story`}>The experience</a>
+    <a href={`/${lang}/demo/`}>Meet Vixie ↗</a>
+    <a class="desktop-link" href={`/${lang}/explore/`}>Field notes</a>
+    <a class="pill" href={`/${lang}/explore/#download`}>Get Vixie <span>↓</span></a>
+    <a class="desktop-link lang-switch" href={languageHref} lang={otherLang} aria-label={lang === 'en' ? 'View this page in Vietnamese' : 'View this page in English'}>{otherLang.toUpperCase()}</a>
+  </nav>
+</header>

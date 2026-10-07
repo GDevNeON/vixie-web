@@ -1,0 +1,38 @@
+---
+/**
+ * `/vi/coming-soon` — TBC store-link destination (Phase 3 Task 1-1, LAND-01).
+ * Uses the shared cinematic shell and locale-aware metadata.
+ * Single h1 from dict + body from dict + home link. No hardcoded copy.
+ */
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/global.css';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('vi');
+---
+<SiteLayout title={t('hero.coming.title')} lang="vi" page="content">
+  <div class="shell miss">
+    <h1>{t('hero.coming.title')}</h1>
+    <p>
+      <span>{t('hero.coming.body')}</span>{' '}
+      <a href="/vi/">{t('notfound.home')}</a>
+    </p>
+  </div>
+</SiteLayout>
+<style>
+  .miss {
+    padding-block: var(--space-7);
+  }
+  .miss p {
+    margin-top: var(--space-4);
+    font-size: var(--text-md);
+    color: var(--color-ink-soft);
+    overflow-wrap: break-word;
+  }
+  .miss a {
+    color: var(--color-cyan-dark);
+    overflow-wrap: break-word;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

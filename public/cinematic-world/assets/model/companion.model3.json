@@ -1,0 +1,1 @@
+{"Version":3,"FileReferences":{"Moc":"companion.moc3","Textures":["texture-2048.png"],"Physics":"companion.physics3.json"},"Groups":[{"Target":"Parameter","Name":"EyeBlink","Ids":["ParamEyeLOpen","ParamEyeROpen"]},{"Target":"Parameter","Name":"LipSync","Ids":["ParamMouthOpenY"]}]}

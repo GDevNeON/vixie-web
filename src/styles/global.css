@@ -1,0 +1,1314 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Phase 2 Task 2-1 (FOUN-10): docs-form dark variant (NOT &:where(.dark *)). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Task 2-1: Plex self-host woff2 only (C09). Source: node_modules fontsource files dir.
+   No fontsource JS-CSS imports in prod code. Static weights only (C14), no italic (C05). */
+
+/* --- IBM Plex Sans 400/500/600/700 x latin+vietnamese (8 files) --- */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-400-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-500-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-600-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-vietnamese-700-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
+/* --- IBM Plex Mono 400/500/600 x latin+vietnamese (6 files) --- */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-400-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-500-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-vietnamese-600-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
+/* --- Comfortaa 700 x latin+vietnamese (2 files, giant sign-off ONLY) --- */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/comfortaa-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/comfortaa-vietnamese-700-normal.woff2') format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EF9;
+}
+
+/* Fallback metrics (C07/C08) — tuned at implementation from measured font data
+   (fontTools: Plex hhea ascent 1025 / descent 275 / lineGap 0 over 1000upm;
+   Arial avg advance 0.57429em vs Plex 0.56886em ratio 0.9905, xHeight 51.6 vs 51.86
+   ratio 0.9951; Mono advance 600/1000 = 1229/2048 = 60% exact match so 100%).
+   Sans size-adjust 99.3% blends both ratios; ascent/descent copy Plex hhea to
+   stop vertical shift on swap. Verified against cold-load (Disable cache). */
+@font-face {
+  font-family: 'Plex Sans Fallback';
+  src: local('Helvetica'), local('Arial');
+  size-adjust: 99.3%;
+  ascent-override: 102.5%;
+  descent-override: 27.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Plex Mono Fallback';
+  src: local('Courier New'), local('Courier'), local('ui-monospace');
+  size-adjust: 100%;
+  ascent-override: 102.5%;
+  descent-override: 27.5%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: 'IBM Plex Sans', 'Plex Sans Fallback', Helvetica, Arial, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.5;
+  min-width: 320px;
+  /* Sticky footer: short pages push Footer to viewport bottom, no float mid-view. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* D12: 180ms theme switch; killed under reduced-motion by the * reset below. */
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+main#main {
+  flex: 1;
+}
+
+/* Brand selection — ink on yellow (16:1, B12) */
+::selection {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+}
+
+/* Focus — 3px cyan ring + 1px ink edge (dual-ring, B12).
+   Cyan ring keeps 3px offset; ink box-shadow hugs the element so focus
+   passes 3:1 non-text on paper (ink-on-paper) and on ink (cyan-on-ink). */
+:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px var(--color-ink);
+}
+
+/* Task 2-2 skip-link (FOUN-09, E05/E06): FIRST focusable in <body>.
+   Off-screen until :focus-visible, then pinned top-left with cyan 3px ring.
+   Dark override uses light-paper literal: var(--color-paper) resolves to ink
+   under .dark, which would hide an ink-on-paper link — same pattern as the
+   .dark fill-label group below. */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: 600 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-control);
+}
+.skip-link:focus-visible {
+  top: 12px;
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+.dark .skip-link {
+  background: #f7f7f5;
+  color: #101010;
+}
+
+/* Hairline default 1px line */
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+/* Sections divide with line-strong (B13) */
+section + section {
+  border-top: 1px solid var(--color-line-strong);
+}
+
+/* Container shell 1400px / 24px (B15) */
+.shell {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+/* ---- Phase 1 shell · Task 1-2 (from locked sketch C-hybrid) ---- */
+/* SHELL now; real landing/blog/docs/legal content owned by later phases. */
+
+/* 5px CMYK process strip at very top (D09) */
+.strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 5px;
+}
+.strip i:nth-child(1) { background: var(--color-cyan); }
+.strip i:nth-child(2) { background: var(--color-magenta); }
+.strip i:nth-child(3) { background: var(--color-yellow); }
+.strip i:nth-child(4) { background: var(--color-ink); }
+
+/* Sticky header 64px, paper bg, 1px line-strong (D08/D09) */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-line-strong);
+}
+.top-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+  color: inherit;
+}
+.brand img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+.word {
+  font: 700 13px/1 var(--font-sans);
+  letter-spacing: 0.1em;
+}
+nav.main {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+nav.main a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+nav.main a:hover,
+nav.main a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+nav.main a:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+nav.main a[aria-current="page"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+nav.main a:active { transform: scale(0.98); }
+.hright {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hcta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  background: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+  color: var(--color-ink);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.hcta:hover { transform: translateY(-2px); }
+.hcta:active { transform: scale(0.98); }
+/* Panel-only header copies: hidden everywhere by default; the ≤920px open
+   dropdown re-enables them (rules inside the media query below). Keeps desktop
+   nav (always visible) free of duplicates. */
+.hcta--panel,
+nav.main .hcta--panel,
+.panel-utils { display: none; }
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-ink);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur) var(--ease);
+}
+.burger:hover { background: var(--color-paper-deep); }
+.burger:active { transform: scale(0.98); }
+/* Open state mirrors the current-page nav fill so MENU↔ĐÓNG reads at a glance. */
+.burger[aria-expanded="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+/* Scroll progress 2px→3px lock per UI-SPEC §6 (final 3px), sticky under header.
+   Inert without JS: default scaleX(0), live-updated with aria-valuenow only. */
+.progress {
+  display: block;
+  height: 3px;
+  background: var(--color-cyan-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  position: sticky;
+  top: 64px;
+  z-index: 49;
+  pointer-events: none;
+}
+
+/* Hero — VI hello-world (UI-SPEC §8.1, exact copy §11) */
+.hero {
+  display: grid;
+  grid-template-columns: 1.55fr 0.45fr;
+  gap: 40px;
+  padding: 52px 0 40px;
+  border-bottom: 1px solid var(--color-line-strong);
+}
+.kick {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: var(--color-magenta-dark);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+/* lh floor 1.0 + wrap guard: stacked VI marks (ồ/ữ/ộ) never clip (pitfall 6) */
+h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: lowercase;
+  overflow-wrap: break-word;
+}
+h1 em {
+  color: var(--color-cyan-dark);
+  font-style: normal;
+}
+.lead {
+  max-width: 52ch;
+  margin-top: 16px;
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+}
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.cta-note {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur-mid, 180ms) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.98); }
+.btn.cy {
+  background: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-ink);
+}
+.btn.gh {
+  background: transparent;
+  color: var(--color-ink);
+}
+.btn.gh:hover { background: var(--color-paper-deep); }
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Phase 3 Task 1-2 (LAND-01): hero dark-island canvas (E01). Full-bleed
+   background + scrim + Paper text, constant in both themes. D19 fallback:
+   Ink gradient until Task 2-1 delivers character art (no <img> yet, no
+   broken img). Full-bleed via negative shell-padding margins (exact, no vw
+   units → zero h-scroll risk at the 320px floor). ≥1448px the shell centers
+   at 1400 so extend by half the gutter + padding. Text block max 640px
+   parked left (face-safe zone resolved per art in 2-1). */
+.hero-island {
+  position: relative;
+  margin-inline: calc(-1 * var(--space-5));
+  overflow: hidden;
+  background: linear-gradient(135deg, #1c1c1c 0%, #101010 60%, #1c1c1c 100%);
+  color: #f7f7f5;
+  min-height: calc(100svh - 64px);
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 1448px) {
+  .hero-island {
+    margin-inline: calc(-1 * ((100vw - 1400px) / 2 + var(--space-5)));
+  }
+}
+@media (max-width: 920px) {
+  .hero-island {
+    margin-inline: calc(-1 * var(--space-4));
+    min-height: 0;
+  }
+}
+.hero-island .hero-bg,
+.hero-island .hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* Polish (critique P1 void): designed absence — a hairline screen-frame
+   marks the wallpaper canvas where D18 art will land (debt ART-TBC), so the
+   fallback reads as reserved composition, not void. Subject-world geometry
+   (the screen the companion lives on), Paper-alpha only, static under
+   reduce by construction (no animation). Scrim covers it, so text contrast
+   is unchanged. Desktop only: behind full-width mobile text it would be
+   noise, and the future face-safe zone is desktop-defined. */
+.hero-island .hero-bg {
+  background:
+    radial-gradient(60% 50% at 72% 38%, rgba(247, 247, 245, 0.06), transparent 70%),
+    linear-gradient(135deg, #1c1c1c 0%, #101010 60%, #1c1c1c 100%);
+}
+.hero-island .hero-frame {
+  position: absolute;
+  top: 10%;
+  bottom: 14%;
+  left: 57%;
+  right: -5%;
+  border: 1px solid rgba(247, 247, 245, 0.14);
+  border-radius: 12px;
+  pointer-events: none;
+}
+.hero-island .hero-frame::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(247, 247, 245, 0.07);
+  border-radius: 8px;
+}
+@media (max-width: 920px) {
+  .hero-island .hero-frame {
+    display: none;
+  }
+}
+.hero-island .hero-scrim {
+  background: linear-gradient(180deg, rgba(16,16,16,.68) 0%, rgba(16,16,16,.55) 45%, rgba(16,16,16,.72) 100%);
+}
+.hero-island .hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding: 48px 24px 88px;
+}
+@media (max-width: 920px) {
+  .hero-island .hero-inner {
+    padding: 48px 16px 80px;
+  }
+}
+.hero-island .hero-copy {
+  max-width: 640px;
+}
+.hero-island .eyebrow {
+  font: 500 var(--text-xs)/1.4 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f7f7f5;
+}
+.hero-island .eyebrow::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-yellow);
+  margin-bottom: 8px;
+}
+.hero-island h1 {
+  /* PLAN ≤2-line criterion in the 640px safe area forces max 3.75rem:
+     empirically 80/72/64px = 3 lines, 60px = 2 lines at 1440px (UI-SPEC
+     starter 5rem kept as comment for the 2-1 art re-check). */
+  font-size: clamp(2.75rem, 6vw, 3.75rem); /* UI-SPEC starter: clamp(2.75rem, 6vw, 5rem) */
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #f7f7f5;
+  margin-top: 16px;
+  overflow-wrap: break-word;
+}
+.hero-island .sub {
+  margin-top: 16px;
+  font-size: var(--text-md);
+  line-height: 1.55;
+  color: #f7f7f5;
+  overflow-wrap: break-word;
+}
+@media (max-width: 920px) {
+  .hero-island .sub {
+    font-size: 1rem;
+  }
+}
+.hero-island .cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 24px;
+}
+@media (max-width: 920px) {
+  .hero-island .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-island .cta-row .btn {
+    justify-content: center;
+  }
+}
+/* Secondary CTA visibly quieter (C07): transparent + 1px Paper border. */
+.hero-island .btn.ghost {
+  background: transparent;
+  border: 1px solid #f7f7f5;
+  color: #f7f7f5;
+}
+.hero-island .btn.ghost:hover {
+  background: rgba(247, 247, 245, 0.12);
+  transform: translateY(-2px);
+}
+.hero-island .greet {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 8px 14px;
+  border-radius: var(--radius-chip);
+  background: rgba(247, 247, 245, 0.12);
+  color: #f7f7f5;
+  font-size: var(--text-sm);
+}
+.hero-island .meta {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(247, 247, 245, 0.72);
+}
+/* Scroll cue (E03): bottom-center anchor to #companion, keyboard-focusable. */
+.hero-island .cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px;
+  font: 500 var(--text-xs)/1.4 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f7f7f5;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (max-width: 920px) {
+  .hero-island .cue {
+    bottom: 16px;
+  }
+}
+.hero-island .cue .cue-arrow {
+  display: inline-block;
+  transition: transform var(--dur-mid) var(--ease), color var(--dur-mid) var(--ease);
+}
+.hero-island .cue:hover .cue-arrow {
+  color: var(--color-magenta);
+  transform: translateY(3px);
+}
+/* Paper edge ring on the dark island (global :focus-visible cyan 3px kept;
+   ink edge would vanish on ink, so swap the 1px edge to Paper here). */
+.hero-island :focus-visible {
+  box-shadow: 0 0 0 1px #f7f7f5;
+}
+/* Phase 4 target anchor shipped in Phase 3 (C01/E04): native offset for the
+   64px sticky header; Lenis glides with the same -64 offset in JS. */
+.anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 64px;
+}
+
+/* D19 fallback (no D18 art delivered — debt ART-TBC): reduced height,
+   content + cue only, plain Ink gradient (no broken img, no gap). When art
+   lands, drop the hero-fallback class and re-verify scrim + face-safe zone. */
+.hero-island.hero-fallback {
+  min-height: 0;
+}
+/* Phase 3 Task 1-3 (LAND-01 tracer-c): toast + inline error + entrance.
+   Toast is the single live surface (role=status, no focus move). Entrance
+   reuses the shared .rv armed system (header script arms unless reduce);
+   hero copy settles in 320ms once. Cue bob 1.6s runs only under
+   no-preference (D11 conflict resolved: reduce always wins, static frame). */
+.js-gated .hero-island .hero-copy.rv,
+.js .hero-island .hero-copy.rv {
+  transition-duration: 320ms;
+}
+.hero-island .hero-error {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+  font-size: var(--text-sm);
+  color: #f7f7f5;
+}
+.hero-island .hero-error[hidden] {
+  display: none;
+}
+.hero-island .hero-toast {
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 5;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  border-radius: var(--radius-control);
+  border-top: 2px solid var(--color-cyan);
+  background: rgba(16, 16, 16, 0.9);
+  color: #f7f7f5;
+  font-size: var(--text-sm);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+}
+.hero-island .hero-toast[hidden] {
+  display: none;
+}
+.hero-island .hero-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-island .hero-toast {
+    transition: none;
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+  .hero-island .cue .cue-arrow {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js-gated .hero-island .cue .cue-arrow,
+  .js .hero-island .cue .cue-arrow {
+    animation: hero-cue-bob 1.6s ease-in-out infinite;
+  }
+}
+@keyframes hero-cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.card {
+  border-top: 5px solid var(--color-yellow);
+  padding-top: 14px;
+  align-self: end;
+}
+.card b {
+  font-size: var(--text-lg);
+  letter-spacing: -0.03em;
+  display: block;
+  margin-bottom: 6px;
+}
+.card p,
+.small {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+code {
+  /* C13: mono body paths/code = Plex Mono 400 13px (--text-sm), lh 1.6 */
+  font-family: 'IBM Plex Mono', 'Plex Mono Fallback', ui-monospace, SFMono-Regular, monospace;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  overflow-wrap: break-word;
+}
+details summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font: 600 var(--text-xs)/1.6 var(--font-mono);
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
+}
+details summary:hover { color: var(--color-ink); }
+details p { margin-top: 8px; }
+
+/* Section bars + 12-col token grid */
+.sec {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-line-strong);
+  border-bottom: 1px solid var(--color-line);
+  margin: 52px 0 20px;
+}
+.sec h2,
+.sec .sec-title {
+  font-size: var(--text-lg);
+  letter-spacing: -0.03em;
+}
+.sec span {
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+  background: var(--color-line);
+  border: 1px solid var(--color-line-strong);
+}
+.box {
+  background: var(--color-paper);
+  padding: 18px;
+  min-height: 110px;
+  min-width: 0;
+}
+.s3 { grid-column: span 3; }
+.s4 { grid-column: span 4; }
+.s6 { grid-column: span 6; }
+.s8 { grid-column: span 8; }
+.s12 { grid-column: span 12; }
+.lab {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed; --ink-faint NEVER readable text */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  display: block;
+}
+.nav-lab {
+  align-self: center;
+  margin: 0 6px;
+}
+.big {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  overflow-wrap: break-word;
+}
+.type-sample {
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+/* Controls demo */
+.inp {
+  width: 100%;
+  max-width: 340px;
+  min-height: 44px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  padding: 0 12px;
+  background: transparent;
+  color: var(--color-ink);
+  font: 400 var(--text-sm)/1.5 var(--font-sans);
+}
+.inp:focus {
+  border-color: var(--color-cyan);
+  box-shadow: inset 0 -2px 0 var(--color-cyan);
+}
+/* Global 3px :focus-visible stays on top of the inset bar */
+.inp::placeholder {
+  color: var(--color-ink-soft); /* AA at full opacity, both themes */
+  opacity: 1;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-chip);
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  margin: 0 6px 6px 0;
+  overflow-wrap: break-word;
+}
+
+/* Dead-placeholder system: readable ink-soft (light #454545 / dark #c9c9c5),
+   never opacity wash, never fake-live href — plain non-focusable spans only */
+.dim-nav {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px dashed var(--color-line-strong);
+  color: var(--color-ink-soft);
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: not-allowed;
+}
+.dim-blk {
+  display: block;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  margin-bottom: 6px;
+  cursor: not-allowed;
+}
+.dim-line {
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
+/* Long Lenis demo block — NO pinning/scrub in Phase 1 (E10) */
+.long {
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-paper-deep);
+  padding: 22px;
+  min-height: 260px;
+  margin-bottom: 14px;
+}
+
+/* Footer shell: 4-col + giant sign-off + baseline (D04) */
+.foot-wrap {
+  padding-bottom: var(--space-9);
+}
+/* lh floor 1.02 + wrap guard + lowercase: ồ/ữ/ộ stay clear (pitfall 6) */
+.giant {
+  font-family: 'Comfortaa', 'IBM Plex Sans', 'Plex Sans Fallback', Helvetica, Arial, sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-transform: lowercase;
+  border-top: 1px solid var(--color-line-strong);
+  margin-top: 32px;
+  padding-top: 20px;
+  overflow-wrap: break-word;
+}
+.giant em {
+  color: var(--color-cyan-dark);
+  font-style: normal;
+}
+footer.ft {
+  border-top: 1px solid var(--color-line-strong);
+  margin-top: 24px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+footer.ft > div { min-width: 0; }
+footer.ft h4 {
+  font: 600 var(--text-xs)/1 var(--font-mono);
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+footer.ft a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  margin-bottom: 2px;
+  overflow-wrap: break-word;
+}
+footer.ft a:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+footer.ft a.mail {
+  display: inline;
+  min-height: 0;
+  color: var(--color-cyan-dark);
+  margin: 0;
+  overflow-wrap: anywhere;
+  /* Task 2-2 axe link-in-text-block (E10): inline mail link inside a text
+     <p> needs a non-color indicator in BOTH themes — underline always on
+     (other footer links underline on hover only because they are block
+     44px targets, not in-text). Dark vivid swap stays in the .dark group. */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.base {
+  border-top: 1px solid var(--color-line);
+  margin-top: 18px;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font: 500 var(--text-xs)/1.5 var(--font-mono);
+  color: var(--color-ink-soft); /* Task 2-1: was usage-only #595959, now themed */
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+}
+/* Empty baseline bar carries zero visual weight — no stray bottom rule. */
+.base:empty {
+  display: none;
+}
+
+/* ---- Phase 2 Task 2-1 dark theme (FOUN-10, RESEARCH §2.2–§2.3) ----
+   Surfaces follow the .dark var-swap in tokens.css automatically. Rules below
+   cover only what vars alone cannot: explicit ink text on transparent
+   backgrounds, vivid link/kicker swaps, focus edge, logo/toggle/strip. */
+
+.dark body {
+  /* Light-paper literal: var(--color-paper) resolves to ink under .dark. */
+  color: #f7f7f5;
+}
+
+/* Explicit ink text → light paper on dark (transparent bg over the ink page).
+   .btn labels live in the fill group below (all .btn except .cy). */
+.dark nav.main a,
+.dark .burger,
+.dark .inp {
+  color: #f7f7f5;
+}
+.dark details summary:hover,
+.dark footer.ft a:hover {
+  color: #f7f7f5;
+}
+
+/* Ink fills keep paper labels on dark (RESEARCH §2.3 items 2-3 called the
+   fills SAFE — true, but their `color: var(--color-paper)` labels resolve to
+   ink under the swap; .cy keeps its ink-on-cyan label, hence :not(.cy)). */
+.dark .btn:not(.cy),
+.dark nav.main a:hover,
+.dark nav.main a[aria-current='page'],
+.dark .burger[aria-expanded='true'] {
+  color: #f7f7f5;
+}
+
+/* Dark link/kicker: vivid variants (axe-measured on ink — cyan 7.52,
+   magenta 4.51, both ≥4.5; light tokens UNTOUCHED). */
+.dark .kick {
+  color: var(--color-magenta);
+}
+.dark h1 em,
+.dark .giant em,
+.dark footer.ft a.mail {
+  color: var(--color-cyan);
+}
+/* !important: beats 404.astro's inlined scoped `.miss a` (0,3,1). */
+.dark .miss a {
+  color: var(--color-cyan) !important;
+}
+
+/* Focus dual-ring: cyan ring symmetric-safe; ink edge → paper edge on dark. */
+.dark :focus-visible {
+  box-shadow: 0 0 0 1px #f7f7f5;
+}
+
+/* Logo dual-img swap (D05): zero JS, zero FOUC. Specificity beats .brand img. */
+.brand img.logo-dm {
+  display: none;
+}
+.dark .brand img.logo-dm {
+  display: block;
+}
+.dark .brand img.logo-lm {
+  display: none;
+}
+
+/* Theme toggle: 44px hit target, hidden without JS (OS media rules instead). */
+.theme-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: inherit;
+  font: 600 var(--text-xs) / 1 var(--font-mono);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur) var(--ease);
+}
+:is(.js, .js-gated) .theme-toggle {
+  display: inline-flex;
+}
+/* Mobile duplicate stays hidden on desktop even with JS (mirrors switcher). */
+:is(.js, .js-gated) .theme-toggle.theme-toggle--panel {
+  display: none;
+}
+.theme-toggle:hover {
+  background: var(--color-paper-deep);
+}
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+/* Moon offers dark in light mode; sun offers light in dark mode. */
+.theme-toggle .icon-sun {
+  display: none;
+}
+.dark .theme-toggle .icon-sun {
+  display: block;
+}
+.dark .theme-toggle .icon-moon {
+  display: none;
+}
+
+/* CMYK strip K segment: ink fill vanishes on the ink page → paper via swap. */
+.dark .strip i:nth-child(4) {
+  background: var(--color-line-strong);
+}
+
+/* No-JS (D15): toggle hidden above; OS media drives vars + critical text. */
+@media (prefers-color-scheme: dark) {
+  html:not(.js):not(.js-gated) {
+    --color-paper: #101010;
+    --color-paper-deep: #1a1a1a;
+    --color-white: #1a1a1a;
+    --color-line: #2a2a2a;
+    --color-line-strong: #f7f7f5;
+    --color-ink-soft: #c9c9c5;
+    color-scheme: dark;
+  }
+  html:not(.js):not(.js-gated) body {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) :is(nav.main a, .burger, .btn:not(.cy), .inp) {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) :is(nav.main a:hover, nav.main a[aria-current='page']) {
+    color: #f7f7f5;
+  }
+  html:not(.js):not(.js-gated) .kick {
+    color: var(--color-magenta);
+  }
+  html:not(.js):not(.js-gated) :is(h1 em, .giant em, footer.ft a.mail, .miss a) {
+    color: var(--color-cyan);
+  }
+}
+
+/* Reveal system (polish 2-3 owns JS): visible by default; .armed hides ONLY
+   when an IntersectionObserver is watching — no-JS/headless stays visible.
+   Gate accepts .js-gated (spec name) or legacy .js; arming script adds both. */
+:is(.js, .js-gated) .rv {
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+:is(.js, .js-gated) .rv.armed {
+  opacity: 0;
+  transform: translateY(10px);
+}
+:is(.js, .js-gated) .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 920px) {
+  /* C16: container side padding 24px desktop (var(--space-5)) → 16px mobile. */
+  .shell { padding-inline: var(--space-4); }
+  .hero { grid-template-columns: 1fr; }
+  /* No-JS default: header row wraps, nav degrades to a wrapped inline list. */
+  .top-inner { flex-wrap: wrap; }
+  nav.main {
+    order: 4;
+    flex-basis: 100%;
+    padding-bottom: var(--space-2);
+  }
+  /* With JS: burger owns the nav as an absolute dropdown panel under header. */
+  :is(.js, .js-gated) nav.main {
+    display: none;
+    order: initial;
+    flex-basis: auto;
+    padding-bottom: 0;
+  }
+  /* Full hamburger ≤920px: topbar keeps brand + burger only; CTA, switcher
+     and theme toggle live inside the panel (open state below). */
+  :is(.js, .js-gated) .hright > .hcta,
+  :is(.js, .js-gated) .hright > nav.switcher,
+  :is(.js, .js-gated) .hright > .theme-toggle {
+    display: none;
+  }
+  /* Panel CTA: hidden everywhere except the open mobile dropdown. */
+  .hcta--panel { display: none; }
+  /* Panel utility row (switcher + theme): hidden until the dropdown opens. */
+  .panel-utils { display: none; }
+  :is(.js, .js-gated) nav.main.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-line-strong);
+    padding: 12px 16px 16px;
+    max-height: calc(100vh - 65px);
+    max-height: calc(100dvh - 65px);
+    overflow-y: auto;
+  }
+  :is(.js, .js-gated) nav.main.open > a {
+    justify-content: flex-start;
+    min-height: 48px;
+  }
+  :is(.js, .js-gated) nav.main.open .hcta--panel {
+    display: inline-flex;
+    justify-content: center;
+  }
+  :is(.js, .js-gated) nav.main.open .panel-utils {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid var(--color-line);
+    padding-top: 12px;
+    margin-top: 6px;
+  }
+  /* Burger panel holds the theme duplicate too (mirrors switcher, D10). */
+  :is(.js, .js-gated) nav.main.open .theme-toggle--panel {
+    display: inline-flex;
+  }
+  .word { display: none; }
+  /* Burger is a JS control: hidden without JS (nav is already listed above). */
+  .burger { display: none; }
+  :is(.js, .js-gated) .burger { display: inline-flex; }
+  .s3, .s4, .s6, .s8 { grid-column: span 12; }
+  footer.ft { grid-template-columns: 1fr 1fr; }
+}
+
+/* Footer stacks 4 → 2 (≤920px) → 1 col on narrow; email wraps via .mail. */
+@media (max-width: 600px) {
+  footer.ft { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
+}
+
+/* Print (D17): force light even when .dark is set; hide theme chrome. */
+@media print {
+  /* Print has no time dimension: a mid-transition print would freeze
+     blended colors, so transitions are off here (not motion, just ink). */
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+  }
+  .dark {
+    --color-paper: #f7f7f5;
+    --color-paper-deep: #ededeb;
+    --color-white: #ffffff;
+    --color-line: #c9c9c5;
+    --color-line-strong: #101010;
+    --color-ink-soft: #454545;
+    color-scheme: light;
+  }
+  .dark body {
+    color: var(--color-ink);
+  }
+  .dark :is(nav.main a, .burger, .btn.gh, .inp),
+  .dark details summary:hover,
+  .dark footer.ft a:hover {
+    color: var(--color-ink);
+  }
+  .dark .kick {
+    color: var(--color-magenta-dark);
+  }
+  .dark :is(h1 em, .giant em, footer.ft a.mail) {
+    color: var(--color-cyan-dark);
+  }
+  /* !important: releases the screen !important above back to the light token. */
+  .dark .miss a {
+    color: var(--color-cyan-dark) !important;
+  }
+  .dark :focus-visible {
+    box-shadow: 0 0 0 1px var(--color-ink);
+  }
+  .dark .strip i:nth-child(4) {
+    background: var(--color-ink);
+  }
+  .brand img.logo-dm,
+  .theme-toggle {
+    display: none !important;
+  }
+  .brand img.logo-lm {
+    display: block !important;
+  }
+}

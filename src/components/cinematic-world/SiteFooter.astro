@@ -1,0 +1,28 @@
+---
+import Wordmark from './Wordmark.astro';
+
+interface Props {
+  lang: 'en' | 'vi';
+}
+
+const { lang } = Astro.props;
+const otherLang = lang === 'en' ? 'vi' : 'en';
+---
+<footer data-lenis-prevent>
+  <div class="footer-top">
+    <a href={`/${lang}/`} aria-label="Vixie home"><Wordmark /></a>
+    <nav aria-label="Footer">
+      <a href={`/${lang}/demo/`}>Try the companion</a>
+      <a href={`/${lang}/explore/#guide`}>Getting started</a>
+      <a href={`/${lang}/explore/#privacy`}>Privacy</a>
+      <a href={`/${lang}/explore/#support`}>Support</a>
+      <a href={`/${lang}/docs/`}>Docs</a>
+      <a href={`/${lang}/tokens/`}>Tokens</a>
+      <a href={`/${otherLang}/`}>{lang === 'en' ? 'Tiếng Việt' : 'English'}</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>A little presence. A more personal screen.</span>
+    <span>© 2026 Vixie · Design study · Android / Windows</span>
+  </div>
+</footer>

@@ -1,0 +1,19 @@
+---
+/**
+ * Root `/` — static redirect stub to default locale (Phase 2 Task 1-1, FOUN-06).
+ * Static output has no runtime i18n middleware, so `/` is meta-refresh + JS only.
+ * Reversibility: COSTLY (A01 default+prefix) — flipping default reworks redirect + canonical + hreflang + copy + e2e.
+ */
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <title>Redirecting to /en/</title>
+    <script>location.replace('/en/');</script>
+  </head>
+  <body>
+    <p><a href="/en/">Continue to /en/</a></p>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+---
+import Markup from './Markup.astro';
+import eyebrow from './markup/demo/eyebrow.html?raw';
+import title from './markup/demo/title.html?raw';
+import chatLab from './markup/demo/chat-lab.html?raw';
+import info from './markup/demo/info.html?raw';
+import actions from './markup/demo/actions.html?raw';
+
+interface Props { lang: 'en' | 'vi'; }
+const { lang } = Astro.props;
+---
+  <Markup html={eyebrow} lang={lang} />
+  <Markup html={title} lang={lang} />
+  <Markup html={chatLab} lang={lang} />
+  <Markup html={info} lang={lang} />
+  <Markup html={actions} lang={lang} />
